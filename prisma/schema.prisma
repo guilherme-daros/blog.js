@@ -1,0 +1,64 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgres"
+  url      = env("DATABASE_URL")
+}
+
+model Post {
+  id           Int      @id @default(autoincrement())
+  title        String
+  slug         String   @unique
+  excerpt      String
+  content      String   @default("")
+  tag          String
+  read_time    Int
+  reads        Int      @default(0)
+  reads_trend  String   @default("up")
+  published_at String   // Stored as string in SQLite, we could convert to DateTime, but let's keep it simple for migration
+  is_featured  Int      @default(0) // SQLite uses 0/1 for boolean. We can use Int for compatibility with export.
+
+  @@map("posts")
+}
+
+model Subscriber {
+  id            Int      @id @default(autoincrement())
+  email         String   @unique
+  subscribed_at DateTime @default(now())
+
+  @@map("subscribers")
+}
+
+model Message {
+  id         Int      @id @default(autoincrement())
+  name       String
+  email      String
+  subject    String   @default("")
+  body       String
+  read       Int      @default(0)
+  created_at DateTime @default(now())
+
+  @@map("messages")
+}
+
+model SocialLink {
+  id         Int      @id @default(autoincrement())
+  platform   String
+  url        String   @default("#")
+  handle     String   @default("")
+  sort_order Int      @default(0)
+
+  @@map("social_links")
+}
+
+model User {
+  id            Int      @id @default(autoincrement())
+  username      String   @unique
+  password_hash String
+  role          String   @default("viewer")
+  created_at    DateTime @default(now())
+
+  @@map("users")
+}

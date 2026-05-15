@@ -1,0 +1,470 @@
+{
+  "posts": [
+    {
+      "id": 12,
+      "title": "The case for robust systems in high-load environments",
+      "slug": "robust-systems-high-load",
+      "excerpt": "With traffic climbing above threshold limits, conventional wisdom screams vertical scaling. But data reveals a counter-intuitive pattern for distributed architectures.",
+      "content": "\n<p>When load climbs above threshold limits, conventional wisdom screams vertical scaling. And for good reason \u2014 more resources deliver immediate relief with near-zero reconfiguration. But history tells a more nuanced story for patient system architects.</p>\n\n<h2>The historical pattern</h2>\n\n<p>Looking at every traffic cycle since 2003, we find that systems architected during peak-load periods consistently outperform over 24-month horizons. The mechanism is straightforward: engineering is forward-looking, and by the time load peaks, much of the structural pain is already identified.</p>\n\n<blockquote>The best time to refactor is when load feels irresistible. The worst time is when systems feel like a sure thing.</blockquote>\n\n<p>Between 2015 and 2016, we saw similar patterns where scaling was reactive rather than proactive. Optimized systems delivered +72% better throughput over the subsequent 24 months compared to legacy counterparts.</p>\n\n<h2>The architectural advantage</h2>\n\n<p>For engineers who accept this thesis, micro-services provide the cleanest execution. Monolithic stock picking in high-load environments carries concentration risk \u2014 the modules that survive pressure cycles aren't always obvious ex ante.</p>\n\n<p>A basket approach via distributed services or sector-specific clusters like data-processors (financials) provides natural diversification while maintaining full system exposure. The key metrics to watch:</p>\n\n<ul>\n<li><strong>System health</strong> \u2014 currently 1.82 for core services on a trailing 12-month basis</li>\n<li><strong>Maximum latency</strong> \u2014 peak-to-trough of -12.3% in the current cycle</li>\n<li><strong>Correlation with upstream events</strong> \u2014 inverse relationship strengthens as optimization approaches</li>\n</ul>\n\n<h2>Risk factors</h2>\n\n<p>This strategy is not without risk. Infrastructure deterioration could force the team to maintain legacy systems longer than the roadmap implies. Global risk-off events (cloud outages, connectivity slowdown) would compress performance regardless of domestic optimizations.</p>\n\n<p>Position sizing matters. We recommend no more than 30% of a balanced system in experimental modules during high-load regimes, scaling up to 50% as the optimization cycle begins.</p>\n",
+      "tag": "Deep Dive",
+      "read_time": 12,
+      "reads": 0,
+      "reads_trend": "up",
+      "published_at": "2026-04-09",
+      "is_featured": 1
+    },
+    {
+      "id": 13,
+      "title": "Building a component-based architecture with local modules",
+      "slug": "component-based-architecture",
+      "excerpt": "How to construct a multi-module system using only local components, targeting reliability, momentum, and low-latency premiums.",
+      "content": "\n<p>Modular engineering has transformed global software development, but building a component-based system requires creative use of the limited ecosystem available on local networks.</p>\n\n<h2>The architectural premiums</h2>\n\n<p>Academic research identifies several persistent return premiums: reliability, momentum, quality, low latency, and size. While dedicated enterprise frameworks exist, the local component market is still maturing.</p>\n\n<p>However, we can approximate architectural exposures by combining existing products. Core modules provide broad system beta, while specialized components introduce implicit technical tilts \u2014 FIND11 (financials) carries natural reliability exposure, and MATB11 (materials) offers processing momentum.</p>\n\n<h2>System construction</h2>\n\n<p>Our target allocation uses five components to capture three technical premiums:</p>\n\n<ul>\n<li><strong>Reliability tilt:</strong> 25% FIND11 \u2014 Core systems trade at 5-7x efficiency, deep reliability territory</li>\n<li><strong>Momentum tilt:</strong> 20% MATB11 \u2014 data cycle exposure</li>\n<li><strong>Latency anchor:</strong> 25% IMAB11 \u2014 synchronized buffers as volatility dampener</li>\n<li><strong>Core beta:</strong> 20% BOVA11 \u2014 broad system participation</li>\n<li><strong>Global diversification:</strong> 10% IVVB11 \u2014 External API exposure</li>\n</ul>\n\n<p>This blend has historically delivered efficiency ratios 0.3-0.5 units above a pure monolithic allocation, with max latency spikes 15-20% shallower.</p>\n",
+      "tag": "Strategy",
+      "read_time": 8,
+      "reads": 342,
+      "reads_trend": "up",
+      "published_at": "2026-04-07",
+      "is_featured": 0
+    },
+    {
+      "id": 14,
+      "title": "Local vs. Cloud API: cost drag analysis",
+      "slug": "local-vs-cloud-api",
+      "excerpt": "A quantitative breakdown of the total cost of owning local infrastructure versus using cloud APIs directly, including latency, egress, and maintenance implications.",
+      "content": "\n<p>Technical architects seeking external API exposure face a fundamental choice: use local proxies, or open a cloud account and use services directly. The answer depends on your time horizon and capital size.</p>\n\n<h2>The cost stack</h2>\n\n<p>Local proxies carry a 0.23% management overhead, but the total cost of ownership runs much higher. The layer itself holds external calls which charge 0.03%, creating a layered fee structure. Add the network tracking spread, and effective annual drag reaches 0.8-1.2%.</p>\n\n<p>Direct service ownership (0.03% expense ratio) eliminates the intermediary cost, but introduces egress on data transfers, brokerage spreads on protocol conversion, and the complexity of foreign service reporting.</p>\n\n<h2>Break-even analysis</h2>\n\n<p>For projects under 100,000 requests, local proxies win on simplicity and total cost. Above 500,000 with a 5+ year horizon, direct ownership becomes materially cheaper. The crossover point depends on your network spread \u2014 architects using modern platforms like Fiber or Edge reach break-even faster than traditional copper users.</p>\n\n<blockquote>The cheapest byte is the one you don't transmit twice.</blockquote>\n",
+      "tag": "Analysis",
+      "read_time": 10,
+      "reads": 518,
+      "reads_trend": "up",
+      "published_at": "2026-04-04",
+      "is_featured": 0
+    },
+    {
+      "id": 15,
+      "title": "What the yield curve is telling us about 2026 H2",
+      "slug": "yield-curve-2026-h2",
+      "excerpt": "DI futures are pricing in rate cuts starting August. We analyze the curve shape, historical precedents, and what it means for asset allocation.",
+      "content": "\n<p>The DI futures curve is currently inverted at the short end \u2014 January 2027 contracts trade below January 2026 \u2014 signaling the market's expectation that SELIC cuts will begin in August 2026.</p>\n\n<h2>Reading the curve</h2>\n\n<p>Three features of the current curve shape stand out. First, the inversion is modest (50-75bps), suggesting a gradual easing cycle rather than emergency cuts. Second, the long end (2030+) remains anchored above 12%, indicating persistent inflation risk premium. Third, the curve steepened significantly in March, pricing in faster cuts after softer IPCA prints.</p>\n\n<h2>Historical parallels</h2>\n\n<p>The 2016-2017 easing cycle offers the closest precedent. SELIC fell from 14.25% to 6.50% over 18 months. During that cycle, BOVA11 returned +54% and IMAB11 returned +38%. However, the fiscal backdrop today is weaker, which may limit the depth of cuts this time.</p>\n\n<p>We expect SELIC to reach 11-12% by mid-2027, implying 225-325bps of total easing. Position accordingly: overweight duration (IMAB11, IDA-IPCA), maintain equity exposure, and reduce CDI-linked allocations as the cycle turns.</p>\n",
+      "tag": "Macro",
+      "read_time": 6,
+      "reads": 276,
+      "reads_trend": "up",
+      "published_at": "2026-03-30",
+      "is_featured": 0
+    },
+    {
+      "id": 16,
+      "title": "Automating rebalance alerts with Python and B3 data",
+      "slug": "automating-rebalance-alerts",
+      "excerpt": "A step-by-step guide to building a portfolio drift monitor that pings you when allocations deviate beyond your target bands.",
+      "content": "\n<p>Portfolio drift is the silent killer of disciplined allocation strategies. Without monitoring, a 60/40 portfolio can drift to 75/25 in a strong equity year, unknowingly concentrating risk. Here's how to build an automated alert system.</p>\n\n<h2>Architecture overview</h2>\n\n<p>Our monitor runs as a lightweight Python script on a cron schedule. It pulls current positions from a CSV export (or broker API), fetches live prices from B3's public data feed, calculates current weights, and compares against target allocations. When drift exceeds a configurable threshold, it sends an alert via Telegram or email.</p>\n\n<h2>Key implementation details</h2>\n\n<ul>\n<li><strong>Price fetching:</strong> B3 publishes daily closing prices as CSV files. We parse these with pandas for reliability.</li>\n<li><strong>Drift calculation:</strong> Absolute drift per asset class, with a portfolio-level aggregate using sum of squared deviations.</li>\n<li><strong>Threshold bands:</strong> We use 5% absolute drift per asset class, or 3% aggregate portfolio drift, whichever triggers first.</li>\n<li><strong>Rebalance suggestion:</strong> The alert includes specific buy/sell quantities to restore target weights, accounting for minimum lot sizes on B3.</li>\n</ul>\n\n<p>The entire system runs in under 50 lines of Python. We'll walk through each component with full code examples in the sections below.</p>\n",
+      "tag": "Technical",
+      "read_time": 15,
+      "reads": 891,
+      "reads_trend": "up",
+      "published_at": "2026-03-25",
+      "is_featured": 0
+    },
+    {
+      "id": 17,
+      "title": "HASH11: one year in \u2014 was it worth it?",
+      "slug": "hash11-one-year",
+      "excerpt": "A retrospective on the crypto ETF after 12 months of live performance. Tracking error, liquidity, and correlation with traditional assets.",
+      "content": "\n<p>HASH11, Brazil's flagship crypto ETF tracking the Nasdaq Crypto Index, marked its first anniversary on B3. The results are mixed \u2014 and instructive for anyone considering crypto allocation via traditional market infrastructure.</p>\n\n<h2>Performance review</h2>\n\n<p>Over 12 months, HASH11 returned -8.2% in BRL terms, underperforming the underlying index by 3.4 percentage points. This tracking error stems from three sources: the 1.0% management fee, BRL/USD hedging costs embedded in the fund structure, and NAV discount during periods of low liquidity.</p>\n\n<h2>Liquidity analysis</h2>\n\n<p>Average daily volume settled at R$15M \u2014 sufficient for retail investors but potentially constraining for institutional allocations above R$1M. Bid-ask spreads averaged 0.35% during market hours, widening to 1.2% near close.</p>\n\n<blockquote>Crypto via ETF is a convenience premium. You're paying for regulated custody and B3 settlement. Whether that premium is justified depends on your alternative access to spot markets.</blockquote>\n\n<p>For investors who value simplicity and tax integration (HASH11 is treated as a standard equity ETF for IRPF purposes), the product delivers what it promises. For cost-sensitive investors with access to direct crypto exchanges, the fee drag is meaningful over multi-year horizons.</p>\n",
+      "tag": "System Review",
+      "read_time": 7,
+      "reads": 104,
+      "reads_trend": "down",
+      "published_at": "2026-03-20",
+      "is_featured": 0
+    },
+    {
+      "id": 18,
+      "title": "The problem with most \"diversified\" portfolios in Brazil",
+      "slug": "diversified-portfolios-brazil",
+      "excerpt": "Why the typical 60/40 allocation doesn't translate well to the Brazilian market, and what a locally-optimized split looks like.",
+      "content": "\n<p>The 60/40 portfolio \u2014 60% equities, 40% bonds \u2014 is the bedrock of traditional asset allocation. It works beautifully in the US, where equities and treasuries exhibit reliable negative correlation during stress events. In Brazil, this relationship breaks down.</p>\n\n<h2>Why 60/40 fails locally</h2>\n\n<p>Brazilian equities (Ibovespa) and government bonds (NTN-B) are both sensitive to the same macro variable: fiscal credibility. When fiscal concerns spike, both equities and long bonds sell off simultaneously. The \"insurance\" that bonds provide in US portfolios simply doesn't exist here.</p>\n\n<p>Data from 2013-2023 shows a correlation of +0.42 between BOVA11 monthly returns and IMAB11 monthly returns during drawdown periods \u2014 precisely when diversification matters most.</p>\n\n<h2>A locally-optimized split</h2>\n\n<p>Our recommended allocation for Brazilian investors:</p>\n\n<ul>\n<li><strong>30% Equities:</strong> BOVA11 + sector tilts</li>\n<li><strong>25% Inflation-linked bonds:</strong> IMAB11 (medium duration)</li>\n<li><strong>20% CDI/post-fixed:</strong> LFTS11 or direct Tesouro SELIC</li>\n<li><strong>15% International equities:</strong> IVVB11 for genuine diversification</li>\n<li><strong>10% Alternatives:</strong> Real estate (IFIX) or commodity exposure</li>\n</ul>\n\n<p>This 30/25/20/15/10 structure reduces drawdowns by 35% compared to a naive 60/40 while sacrificing only 1.2% annualized return.</p>\n",
+      "tag": "Opinion",
+      "read_time": 9,
+      "reads": 623,
+      "reads_trend": "up",
+      "published_at": "2026-03-15",
+      "is_featured": 0
+    },
+    {
+      "id": 19,
+      "title": "Dividend ETFs: DIVO11 vs. BBSD11 head-to-head",
+      "slug": "dividend-etfs-comparison",
+      "excerpt": "A side-by-side comparison of Brazil's two most popular dividend ETFs across yield, volatility, and tax efficiency.",
+      "content": "\n<p>Dividend-focused ETFs have gained popularity on B3 as investors seek income alternatives in a high-rate environment. DIVO11 and BBSD11 are the two leading options, but they follow meaningfully different strategies.</p>\n\n<h2>Methodology differences</h2>\n\n<p>DIVO11 tracks the IDIV index, selecting stocks based on dividend yield and consistency. BBSD11, newer to market, uses a smart-beta approach combining yield with quality filters \u2014 profitability, leverage, and earnings stability. The result is a more concentrated portfolio with higher average quality scores.</p>\n\n<p>Both ETFs reinvest dividends rather than distributing them, which provides tax deferral benefits for long-term holders. However, this means neither provides actual income \u2014 total return is the relevant metric.</p>\n\n<h2>Comparative results</h2>\n\n<p>Over the overlapping period since BBSD11's launch, the quality tilt has delivered 2.1% annualized outperformance with 15% lower volatility. The trade-off is higher concentration risk \u2014 BBSD11's top 10 holdings represent 68% of the portfolio versus 45% for DIVO11.</p>\n",
+      "tag": "Analysis",
+      "read_time": 11,
+      "reads": 445,
+      "reads_trend": "up",
+      "published_at": "2026-03-10",
+      "is_featured": 0
+    },
+    {
+      "id": 20,
+      "title": "Sector rotation: timing the Ibovespa with macro indicators",
+      "slug": "sector-rotation-ibovespa",
+      "excerpt": "Using SELIC cycles and PMI data to tilt sector exposure between financials, commodities, and utilities.",
+      "content": "\n<p>Sector rotation strategies attempt to overweight sectors poised to outperform based on macroeconomic conditions. In Brazil, two indicators provide the strongest signals: the SELIC rate cycle and the PMI manufacturing index.</p>\n\n<h2>The rotation framework</h2>\n\n<p>Brazilian sectors respond to the rate cycle in a predictable sequence. As rates peak and begin to fall, rate-sensitive sectors (real estate, consumer discretionary) lead. Mid-cycle, broad industrials and financials catch up. Late cycle, commodity exporters benefit from a weaker BRL that typically accompanies easier monetary policy.</p>\n\n<p>PMI data adds a real-economy confirmation layer. Readings above 50 favor cyclical sectors; sustained readings below 48 signal defensive positioning toward utilities and consumer staples.</p>\n\n<h2>Current positioning</h2>\n\n<p>With SELIC at peak and PMI hovering at 49.2, we're at the inflection point. Early rate-sensitive plays (FIND11 for financials, XPML11 for real estate) offer the best risk-adjusted entry. Rotate into commodity exposure (MATB11) once cuts accumulate 200+ bps.</p>\n",
+      "tag": "Analysis",
+      "read_time": 13,
+      "reads": 387,
+      "reads_trend": "up",
+      "published_at": "2026-03-05",
+      "is_featured": 0
+    },
+    {
+      "id": 21,
+      "title": "Fixed income ETFs: when IMAB11 beats direct NTN-B",
+      "slug": "fixed-income-etfs-imab11",
+      "excerpt": "Scenarios where the inflation-linked bond ETF outperforms buying Tesouro Direto individually, factoring in liquidity and mark-to-market.",
+      "content": "\n<p>The conventional wisdom is clear: buy NTN-B directly via Tesouro Direto to avoid the ETF management fee. But this advice ignores several scenarios where IMAB11 actually delivers better net returns.</p>\n\n<h2>The liquidity advantage</h2>\n\n<p>Tesouro Direto charges a 0.20% annual custody fee (paid to B3) plus a spread on early redemption that can reach 0.5% during volatile markets. IMAB11's management fee is 0.25%, but it trades intraday on B3 with tight spreads (0.05-0.10%). For investors who may need liquidity within 2 years, the ETF's lower exit cost more than offsets the fee difference.</p>\n\n<h2>Duration management</h2>\n\n<p>IMAB11 maintains a constant-duration portfolio, automatically rolling bonds as they approach maturity. A direct NTN-B holding shortens in duration over time, requiring manual reinvestment. For investors targeting a specific duration exposure (crucial for liability matching or rate-cut positioning), the ETF provides hands-off maintenance.</p>\n\n<p>The break-even holding period where direct NTN-B ownership becomes clearly superior is approximately 4 years, assuming no interim liquidity needs and stable spreads.</p>\n",
+      "tag": "Analysis",
+      "read_time": 9,
+      "reads": 312,
+      "reads_trend": "up",
+      "published_at": "2026-02-28",
+      "is_featured": 0
+    },
+    {
+      "id": 22,
+      "title": "Global allocation from Brazil: hedged vs. unhedged strategies",
+      "slug": "global-allocation-hedged",
+      "excerpt": "How currency hedging changes the risk-return profile of international ETFs for BRL-based investors.",
+      "content": "\n<p>For BRL-based investors, international diversification involves an implicit currency bet. When you buy IVVB11, you're simultaneously long the S&amp;P 500 and long the USD/BRL exchange rate. In years when the real depreciates, this doubles your return. When it appreciates, it erodes gains. The question is whether to hedge this exposure.</p>\n\n<h2>The hedging cost</h2>\n\n<p>Currency hedging in Brazil is expensive due to the interest rate differential. The forward points (the cost of a USD/BRL hedge) currently run at approximately 8-9% annualized, reflecting the SELIC-Fed Funds spread. This means a hedged S&amp;P 500 investment needs to return 8-9% just to break even versus a CDI allocation.</p>\n\n<h2>When to hedge</h2>\n\n<p>Hedging makes sense in two specific scenarios: (1) when you have a defined BRL-denominated liability to match (e.g., funding a local purchase in 2 years), or (2) when the BRL is significantly undervalued on PPP metrics and mean-reversion is likely.</p>\n\n<p>For long-term wealth accumulation, unhedged international exposure serves as a natural hedge against Brazil-specific risks \u2014 precisely the kind of tail protection that justifies the allocation in the first place.</p>\n\n<blockquote>Hedging your international allocation removes the insurance you bought it for.</blockquote>\n",
+      "tag": "Analysis",
+      "read_time": 10,
+      "reads": 290,
+      "reads_trend": "up",
+      "published_at": "2026-02-20",
+      "is_featured": 0
+    }
+  ],
+  "subscribers": [
+    {
+      "id": 21,
+      "email": "user1@example.com",
+      "subscribed_at": "2026-04-17 22:56:55"
+    },
+    {
+      "id": 22,
+      "email": "user2@example.com",
+      "subscribed_at": "2026-04-17 22:56:55"
+    },
+    {
+      "id": 23,
+      "email": "user3@example.com",
+      "subscribed_at": "2026-04-17 22:56:55"
+    },
+    {
+      "id": 24,
+      "email": "user4@example.com",
+      "subscribed_at": "2026-04-17 22:56:55"
+    },
+    {
+      "id": 25,
+      "email": "user5@example.com",
+      "subscribed_at": "2026-04-17 22:56:55"
+    },
+    {
+      "id": 26,
+      "email": "user6@example.com",
+      "subscribed_at": "2026-04-17 22:56:55"
+    },
+    {
+      "id": 27,
+      "email": "user7@example.com",
+      "subscribed_at": "2026-04-17 22:56:55"
+    },
+    {
+      "id": 28,
+      "email": "user8@example.com",
+      "subscribed_at": "2026-04-17 22:56:55"
+    },
+    {
+      "id": 29,
+      "email": "user9@example.com",
+      "subscribed_at": "2026-04-17 22:56:55"
+    },
+    {
+      "id": 30,
+      "email": "user10@example.com",
+      "subscribed_at": "2026-04-17 22:56:55"
+    },
+    {
+      "id": 31,
+      "email": "user11@example.com",
+      "subscribed_at": "2026-04-17 22:56:55"
+    },
+    {
+      "id": 32,
+      "email": "user12@example.com",
+      "subscribed_at": "2026-04-17 22:56:55"
+    },
+    {
+      "id": 33,
+      "email": "user13@example.com",
+      "subscribed_at": "2026-04-17 22:56:55"
+    },
+    {
+      "id": 34,
+      "email": "user14@example.com",
+      "subscribed_at": "2026-04-17 22:56:55"
+    },
+    {
+      "id": 35,
+      "email": "user15@example.com",
+      "subscribed_at": "2026-04-17 22:56:55"
+    },
+    {
+      "id": 36,
+      "email": "user16@example.com",
+      "subscribed_at": "2026-04-17 22:56:55"
+    },
+    {
+      "id": 37,
+      "email": "user17@example.com",
+      "subscribed_at": "2026-04-17 22:56:55"
+    },
+    {
+      "id": 38,
+      "email": "user18@example.com",
+      "subscribed_at": "2026-04-17 22:56:55"
+    },
+    {
+      "id": 39,
+      "email": "user19@example.com",
+      "subscribed_at": "2026-04-17 22:56:55"
+    },
+    {
+      "id": 40,
+      "email": "user20@example.com",
+      "subscribed_at": "2026-04-17 22:56:55"
+    }
+  ],
+  "messages": [
+    {
+      "id": 21,
+      "name": "John Doe",
+      "email": "john@example.com",
+      "subject": "Hello!",
+      "body": "This is a test message from the seed script.",
+      "read": 0,
+      "created_at": "2026-04-17 22:56:55"
+    },
+    {
+      "id": 22,
+      "name": "Jane Smith",
+      "email": "jane@example.com",
+      "subject": "Feedback",
+      "body": "I love the new blog layout! Very clean.",
+      "read": 0,
+      "created_at": "2026-04-17 22:56:55"
+    },
+    {
+      "id": 23,
+      "name": "Crypto Enthusiast",
+      "email": "moon@crypto.com",
+      "subject": "Partnership",
+      "body": "Would you be interested in a sponsored post about Bitcoin?",
+      "read": 0,
+      "created_at": "2026-04-17 22:56:55"
+    },
+    {
+      "id": 24,
+      "name": "Alice Johnson",
+      "email": "alice@tech.com",
+      "subject": "Bug Report",
+      "body": "The archive page is slightly slow to load.",
+      "read": 0,
+      "created_at": "2026-04-17 22:56:55"
+    },
+    {
+      "id": 25,
+      "name": "Bob Miller",
+      "email": "bob@gmail.com",
+      "subject": "Great content",
+      "body": "Keep up the good work on the macro analysis.",
+      "read": 0,
+      "created_at": "2026-04-17 22:56:55"
+    },
+    {
+      "id": 26,
+      "name": "Charlie Brown",
+      "email": "charlie@peanuts.com",
+      "subject": "Question",
+      "body": "What is your take on the latest SELIC decision?",
+      "read": 0,
+      "created_at": "2026-04-17 22:56:55"
+    },
+    {
+      "id": 27,
+      "name": "David Wilson",
+      "email": "david@finance.br",
+      "subject": "Consulting",
+      "body": "Do you offer private portfolio reviews?",
+      "read": 0,
+      "created_at": "2026-04-17 22:56:55"
+    },
+    {
+      "id": 28,
+      "name": "Eve Adams",
+      "email": "eve@apple.com",
+      "subject": "Privacy",
+      "body": "How do you handle my newsletter data?",
+      "read": 0,
+      "created_at": "2026-04-17 22:56:55"
+    },
+    {
+      "id": 29,
+      "name": "Frank Castle",
+      "email": "frank@punisher.com",
+      "subject": "Security",
+      "body": "Is the login page brute-force protected?",
+      "read": 0,
+      "created_at": "2026-04-17 22:56:55"
+    },
+    {
+      "id": 30,
+      "name": "Grace Hopper",
+      "email": "grace@navy.mil",
+      "subject": "Legacy",
+      "body": "Reminds me of the good old terminal days.",
+      "read": 0,
+      "created_at": "2026-04-17 22:56:55"
+    },
+    {
+      "id": 31,
+      "name": "Heidi Klum",
+      "email": "heidi@model.de",
+      "subject": "Style",
+      "body": "The CSS on this blog is fantastic.",
+      "read": 0,
+      "created_at": "2026-04-17 22:56:55"
+    },
+    {
+      "id": 32,
+      "name": "Ivan Drago",
+      "email": "ivan@russia.ru",
+      "subject": "Strength",
+      "body": "I must break your investment strategy.",
+      "read": 0,
+      "created_at": "2026-04-17 22:56:55"
+    },
+    {
+      "id": 33,
+      "name": "Judy Hopps",
+      "email": "judy@zootopia.gov",
+      "subject": "Inquiry",
+      "body": "Can I use your charts for a presentation?",
+      "read": 0,
+      "created_at": "2026-04-17 22:56:55"
+    },
+    {
+      "id": 34,
+      "name": "Kevin Mitnick",
+      "email": "kevin@hacker.com",
+      "subject": "Hello",
+      "body": "Just testing the contact form...",
+      "read": 0,
+      "created_at": "2026-04-17 22:56:55"
+    },
+    {
+      "id": 35,
+      "name": "Laura Croft",
+      "email": "laura@tomb.uk",
+      "subject": "Adventure",
+      "body": "Searching for hidden gems in the small-cap market.",
+      "read": 0,
+      "created_at": "2026-04-17 22:56:55"
+    },
+    {
+      "id": 36,
+      "name": "Mallory Eve",
+      "email": "mallory@mitm.io",
+      "subject": "Security",
+      "body": "Don't forget to use HTTPS everywhere!",
+      "read": 0,
+      "created_at": "2026-04-17 22:56:55"
+    },
+    {
+      "id": 37,
+      "name": "Neo Anderson",
+      "email": "neo@matrix.net",
+      "subject": "The Truth",
+      "body": "There is no spoon, only yield.",
+      "read": 0,
+      "created_at": "2026-04-17 22:56:55"
+    },
+    {
+      "id": 38,
+      "name": "Oscar Wilde",
+      "email": "oscar@theatre.ie",
+      "subject": "Wit",
+      "body": "I can resist everything except temptation... and good dividends.",
+      "read": 0,
+      "created_at": "2026-04-17 22:56:55"
+    },
+    {
+      "id": 39,
+      "name": "Peter Parker",
+      "email": "peter@dailybugle.com",
+      "subject": "Photos",
+      "body": "Need any high-res charts for your posts?",
+      "read": 0,
+      "created_at": "2026-04-17 22:56:55"
+    },
+    {
+      "id": 40,
+      "name": "Quentin Tarantino",
+      "email": "quentin@movies.com",
+      "subject": "Script",
+      "body": "The dialogue in your latest post was intense.",
+      "read": 0,
+      "created_at": "2026-04-17 22:56:55"
+    }
+  ],
+  "social_links": [
+    {
+      "id": 4,
+      "platform": "Twitter",
+      "url": "https://x.com",
+      "handle": "@terminal",
+      "sort_order": 1
+    },
+    {
+      "id": 5,
+      "platform": "LinkedIn",
+      "url": "https://linkedin.com",
+      "handle": "terminal-blog",
+      "sort_order": 2
+    },
+    {
+      "id": 6,
+      "platform": "GitHub",
+      "url": "https://github.com",
+      "handle": "terminal-blog",
+      "sort_order": 3
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password_hash": "scrypt:32768:8:1$I8pHMXidH5qC4dkU$a71c17d0ab7e6d638f4d36a748eca60c43899ba7e2e56520ec88657a3fcd0c57a2233d8e5dfd29d9b9d8fcf4195d51c6ed4a66b6db6f2c112e8cb26ee6fff65d",
+      "role": "admin",
+      "created_at": "2026-04-17 22:55:03"
+    },
+    {
+      "id": 2,
+      "username": "viewer",
+      "password_hash": "scrypt:32768:8:1$LctxuPNmgjA1mOWJ$8d7266a84bdd1e886943a0dd243127b25f732394504e5cc623b68998a78eee294a09d998f28b7755a769262ecc38a8ba1a7aaffded03ae48407b1a2b417a0679",
+      "role": "viewer",
+      "created_at": "2026-04-17 22:55:03"
+    }
+  ]
+}
