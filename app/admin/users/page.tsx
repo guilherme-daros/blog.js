@@ -3,7 +3,8 @@ import { Metadata } from "next";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import DeleteButton from "@/components/admin/DeleteButton";
-import { deleteUser, createUser } from "@/app/actions/admin";
+import { deleteUser } from "@/app/actions/admin";
+import CreateUserModal from "@/components/admin/CreateUserModal";
 
 export const metadata: Metadata = {
   title: "Users — Terminal Admin",
@@ -27,11 +28,14 @@ export default async function AdminUsers() {
             {users.length} user{users.length !== 1 ? "s" : ""}
           </span>
         </div>
+        {isAdmin && (
+          <div style={{ display: "flex", gap: "0.5rem" }}>
+            <CreateUserModal />
+          </div>
+        )}
       </div>
 
-      <div className="admin-grid-2">
-        <section>
-          <div className="admin-table-wrap">
+      <div className="admin-table-wrap">
             <table className="admin-table">
               <thead>
                 <tr>
@@ -65,46 +69,6 @@ export default async function AdminUsers() {
               </tbody>
             </table>
           </div>
-        </section>
-
-        {isAdmin && (
-          <section>
-            <h2 className="admin-section-title">Create User</h2>
-            <form action={createUser} className="admin-form">
-              <div className="form-group">
-                <label htmlFor="username">Username</label>
-                <input
-                  type="text"
-                  id="username"
-                  name="username"
-                  placeholder="username"
-                  required
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="password">Password</label>
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  placeholder="password"
-                  required
-                />
-              </div>
-              <div className="form-group">
-                <label htmlFor="role">Role</label>
-                <select id="role" name="role" className="admin-select">
-                  <option value="viewer">Viewer (read-only)</option>
-                  <option value="admin">Admin (full access)</option>
-                </select>
-              </div>
-              <button type="submit" className="btn btn-primary">
-                Create user
-              </button>
-            </form>
-          </section>
-        )}
-      </div>
     </>
   );
 }
