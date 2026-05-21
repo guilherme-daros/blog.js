@@ -136,6 +136,14 @@ export async function deleteSubscriber(id: number) {
   revalidatePath("/admin");
 }
 
+export async function deleteSubscribers(ids: number[]) {
+  await checkAdmin();
+  await subscriberService.deleteManySubscribers(ids);
+  
+  revalidatePath("/admin/subscribers");
+  revalidatePath("/admin");
+}
+
 const UserSchema = z.object({
   username: z.string().min(3),
   password: z.string().min(6).optional(),

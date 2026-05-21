@@ -4,6 +4,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "@/lib/auth";
 import DeleteButton from "@/components/admin/DeleteButton";
 import { deleteSubscriber } from "@/app/actions/admin";
+import SubscribersClient from "@/components/admin/SubscribersClient";
 
 export const metadata: Metadata = {
   title: "Subscribers — Terminal Admin",
@@ -17,53 +18,5 @@ export default async function AdminSubscribers() {
     orderBy: { id: "desc" },
   });
 
-  return (
-    <>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "2rem" }}>
-        <div style={{ display: "flex", alignItems: "baseline", gap: "1rem" }}>
-          <h2 style={{ margin: 0 }}>Subscribers</h2>
-          <span className="admin-count" style={{ margin: 0 }}>
-            {subscribers.length} subscriber{subscribers.length !== 1 ? "s" : ""}
-          </span>
-        </div>
-        <div style={{ display: "flex", gap: "0.5rem" }}>
-          <button className="btn btn-outline" disabled>Manage</button>
-        </div>
-      </div>
-      {subscribers.length > 0 ? (
-        <div className="admin-table-wrap">
-          <table className="admin-table">
-            <thead>
-              <tr>
-                <th>Email</th>
-                <th>Subscribed</th>
-                {isAdmin && <th style={{ width: "80px" }}></th>}
-              </tr>
-            </thead>
-            <tbody>
-              {subscribers.map((sub) => (
-                <tr key={sub.id}>
-                  <td className="mono">{sub.email}</td>
-                  <td className="mono">
-                    {new Date(sub.subscribed_at).toISOString().slice(0, 10)}
-                  </td>
-                  {isAdmin && (
-                    <td>
-                      <DeleteButton
-                        id={sub.id}
-                        action={deleteSubscriber}
-                        confirmMessage="Remove this subscriber?"
-                      />
-                    </td>
-                  )}
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      ) : (
-        <p className="admin-empty">No subscribers yet.</p>
-      )}
-    </>
-  );
+  return <SubscribersClient subscribers={subscribers} isAdmin={isAdmin} />;
 }

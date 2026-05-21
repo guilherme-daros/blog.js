@@ -13,6 +13,14 @@ export const subscriberService = {
     });
   },
 
+  async deleteManySubscribers(ids: number[]) {
+    return prisma.subscriber.deleteMany({
+      where: {
+        id: { in: ids },
+      },
+    });
+  },
+
   async addSubscriber(email: string) {
     return prisma.subscriber.create({
       data: { email },
