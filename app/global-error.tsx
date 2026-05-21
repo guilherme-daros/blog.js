@@ -21,7 +21,7 @@ export default function GlobalError({
   reset: () => void;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`}>
+    <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`} data-scroll-behavior="smooth">
       <body className="login-body">
         <div className="error-page">
           <div className="terminal-box error-terminal" style={{ textAlign: "left" }}>

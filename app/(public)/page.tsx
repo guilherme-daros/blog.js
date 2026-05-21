@@ -15,7 +15,7 @@ export default async function HomePage({
   const tagFilter = typeof tag === "string" ? tag : undefined;
 
   const featured = await prisma.post.findFirst({
-    where: { is_featured: 1 },
+    where: { is_featured: true },
     orderBy: { id: "desc" },
   });
 

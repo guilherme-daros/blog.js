@@ -17,7 +17,7 @@ export default function Error({
 
   return (
     <div className="error-page" style={{ paddingTop: "120px" }}>
-      <div className="terminal-box error-terminal" style={{ margin: "0 auto 2rem", maxWidth: "480px" }}>
+      <div className="terminal-box error-terminal" style={{ margin: "0 auto 2rem" }}>
         <div className="line-dim">$ systemctl status terminal-blog</div>
         <div className="line-orange">● terminal-blog.service - Terminal Blog</div>
         <div className="line-dim">   Loaded: loaded</div>

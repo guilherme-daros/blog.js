@@ -1,6 +1,6 @@
-import Link from "next/link";
 import prisma from "@/lib/prisma";
-
+import Header from "@/components/public/Header";
+import Footer from "@/components/public/Footer";
 import BackToTop from "@/components/public/BackToTop";
 
 export default async function PublicLayout({
@@ -14,52 +14,9 @@ export default async function PublicLayout({
 
   return (
     <>
-      <header className="header">
-        <div className="header-inner">
-          <Link href="/" className="logo">
-            Terminal<span>.</span>blog
-          </Link>
-          <nav className="header-nav">
-            <ul className="nav-links">
-              <li>
-                <Link href="/">Home</Link>
-              </li>
-              <li>
-                <Link href="/archive">Archive</Link>
-              </li>
-              <li>
-                <Link href="/about">About</Link>
-              </li>
-              <li>
-                <Link href="/contact">Contact</Link>
-              </li>
-            </ul>
-          </nav>
-          <form className="header-search" action="/search" method="GET">
-            <input type="text" name="q" placeholder="Search..." aria-label="Search" />
-          </form>
-        </div>
-      </header>
-
+      <Header />
       {children}
-
-      <footer className="footer">
-        <div className="footer-inner">
-          <span className="footer-copy">
-            &copy; 2026 Terminal Blog &mdash; All rights reserved
-          </span>
-          <ul className="footer-links">
-            {socialLinks.map((link) => (
-              <li key={link.id}>
-                <a href={link.url} target="_blank" rel="noopener noreferrer">
-                  {link.platform}
-                </a>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </footer>
-
+      <Footer socialLinks={socialLinks} />
       <BackToTop />
     </>
   );

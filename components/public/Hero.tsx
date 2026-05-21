@@ -1,13 +1,15 @@
+import styles from "./Hero.module.css";
+
 export default function Hero() {
   return (
-    <section className="hero">
-      <div className="hero-tag">// Market Intelligence</div>
+    <section className={styles.hero}>
+      <div className={styles.tag}>// Market Intelligence</div>
       <h1>Insights for the modern investor</h1>
       <p>
         Deep technical analysis, market commentary, and portfolio strategy &mdash;
         built for those who treat investing as a craft.
       </p>
-      <div className="hero-cta">
+      <div className={styles.cta}>
         <a href="#posts" className="btn btn-primary">
           Read latest
         </a>
