@@ -18,33 +18,43 @@ export default async function AdminSocialLinks() {
 
   return (
     <>
-      <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "1rem" }}>
-        <h2>Social Links</h2>
-      </div>
-
       {isAdmin ? (
         <SocialLinksForm initialLinks={links} />
       ) : (
-        <div className="admin-social-list">
-          {links.map((link) => (
-            <div key={link.id} className="admin-social-card">
-              <div className="admin-social-fields">
-                <div className="form-group">
-                  <label>Platform</label>
-                  <span className="admin-readonly">{link.platform}</span>
-                </div>
-                <div className="form-group">
-                  <label>URL</label>
-                  <span className="admin-readonly">{link.url}</span>
-                </div>
-                <div className="form-group">
-                  <label>Handle</label>
-                  <span className="admin-readonly">{link.handle}</span>
-                </div>
-              </div>
+        <>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "2rem" }}>
+            <div style={{ display: "flex", alignItems: "baseline", gap: "1rem" }}>
+              <h2 style={{ margin: 0 }}>Social Links</h2>
+              <span className="admin-count" style={{ margin: 0 }}>
+                {links.length} link{links.length !== 1 ? "s" : ""}
+              </span>
             </div>
-          ))}
+          </div>
+        <div className="admin-table-wrap">
+          <table className="admin-table">
+            <thead>
+              <tr>
+                <th>Platform</th>
+                <th>URL</th>
+                <th>Handle</th>
+              </tr>
+            </thead>
+            <tbody>
+              {links.map((link) => (
+                <tr key={link.id}>
+                  <td><strong>{link.platform}</strong></td>
+                  <td>
+                    <a href={link.url} target="_blank" rel="noopener noreferrer">
+                      {link.url}
+                    </a>
+                  </td>
+                  <td className="mono">{link.handle}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
+        </>
       )}
     </>
   );

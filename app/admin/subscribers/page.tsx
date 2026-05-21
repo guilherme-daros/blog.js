@@ -19,14 +19,17 @@ export default async function AdminSubscribers() {
 
   return (
     <>
-      <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "1rem" }}>
-        <h2>Subscribers</h2>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "2rem" }}>
+        <div style={{ display: "flex", alignItems: "baseline", gap: "1rem" }}>
+          <h2 style={{ margin: 0 }}>Subscribers</h2>
+          <span className="admin-count" style={{ margin: 0 }}>
+            {subscribers.length} subscriber{subscribers.length !== 1 ? "s" : ""}
+          </span>
+        </div>
+        <div style={{ display: "flex", gap: "0.5rem" }}>
+          <button className="btn btn-outline" disabled>Manage</button>
+        </div>
       </div>
-
-      <p className="admin-count">
-        {subscribers.length} subscriber{subscribers.length !== 1 ? "s" : ""}
-      </p>
-
       {subscribers.length > 0 ? (
         <div className="admin-table-wrap">
           <table className="admin-table">

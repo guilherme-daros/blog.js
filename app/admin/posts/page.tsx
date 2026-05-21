@@ -14,13 +14,17 @@ export default async function AdminPosts() {
 
   return (
     <>
-      <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "1rem" }}>
-        <h2>Manage Posts</h2>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "2rem" }}>
+        <div style={{ display: "flex", alignItems: "baseline", gap: "1rem" }}>
+          <h2 style={{ margin: 0 }}>Posts</h2>
+          <span className="admin-count" style={{ margin: 0 }}>
+            {posts.length} post{posts.length !== 1 ? "s" : ""}
+          </span>
+        </div>
         <Link href="/admin/posts/new" className="btn btn-primary">
           + New Post
         </Link>
       </div>
-
       <div className="admin-table-wrap">
         <table className="admin-table">
           <thead>

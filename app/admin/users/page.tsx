@@ -20,13 +20,17 @@ export default async function AdminUsers() {
 
   return (
     <>
-      <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "1rem" }}>
-        <h2>Users</h2>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "2rem" }}>
+        <div style={{ display: "flex", alignItems: "baseline", gap: "1rem" }}>
+          <h2 style={{ margin: 0 }}>Users</h2>
+          <span className="admin-count" style={{ margin: 0 }}>
+            {users.length} user{users.length !== 1 ? "s" : ""}
+          </span>
+        </div>
       </div>
 
       <div className="admin-grid-2">
         <section>
-          <h2 className="admin-section-title">All Users</h2>
           <div className="admin-table-wrap">
             <table className="admin-table">
               <thead>

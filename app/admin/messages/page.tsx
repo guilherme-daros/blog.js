@@ -21,8 +21,13 @@ export default async function AdminMessages({
 
   return (
     <>
-      <div style={{ display: "flex", justifyContent: "space-between", marginBottom: "1rem" }}>
-        <h2>Messages</h2>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "2rem" }}>
+        <div style={{ display: "flex", alignItems: "baseline", gap: "1rem" }}>
+          <h2 style={{ margin: 0 }}>Messages</h2>
+          <span className="admin-count" style={{ margin: 0 }}>
+            {messages.length} message{messages.length !== 1 ? "s" : ""}
+          </span>
+        </div>
         <div style={{ display: "flex", gap: "0.5rem" }}>
           <Link
             href={`/admin/messages${!isUnreadFirst ? "?unread_first=1" : ""}`}
