@@ -1,10 +1,10 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
+  previewFeatures = ["fullTextSearchPostgres"]
 }
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
 }
 
 model Post {
@@ -17,8 +17,8 @@ model Post {
   read_time    Int
   reads        Int      @default(0)
   reads_trend  String   @default("up")
-  published_at String   // Stored as string in SQLite, we could convert to DateTime, but let's keep it simple for migration
-  is_featured  Int      @default(0) // SQLite uses 0/1 for boolean. We can use Int for compatibility with export.
+  published_at DateTime
+  is_featured  Boolean  @default(false)
 
   @@map("posts")
 }
@@ -37,7 +37,7 @@ model Message {
   email      String
   subject    String   @default("")
   body       String
-  read       Int      @default(0)
+  read       Boolean  @default(false)
   created_at DateTime @default(now())
 
   @@map("messages")
