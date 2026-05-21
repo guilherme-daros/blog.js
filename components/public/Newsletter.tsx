@@ -1,23 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { useActionState } from "react";
+import { subscribeNewsletter } from "@/app/actions/public";
+import styles from "./Newsletter.module.css";
 
 export default function Newsletter() {
-  const [status, setStatus] = useState<"idle" | "loading" | "success">("idle");
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setStatus("loading");
-    
-    // Simulate server action or API call
-    setTimeout(() => {
-      setStatus("success");
-    }, 1000);
-  };
+  const [state, formAction, isPending] = useActionState(subscribeNewsletter, {
+    success: false,
+    error: undefined,
+  });
 
   return (
-    <section className="newsletter-section" id="newsletter">
-      <div className="newsletter-card">
+    <section className={styles.section} id="newsletter">
+      <div className={styles.card}>
         <div>
           <h2>Stay in the terminal</h2>
           <p>
@@ -25,21 +20,28 @@ export default function Newsletter() {
             data and analysis.
           </p>
         </div>
-        {status === "success" ? (
-          <div className="newsletter-success">✓ Subscribed successfully.</div>
+        {state?.success ? (
+          <div className={styles.success}>✓ Subscribed successfully.</div>
         ) : (
-          <form className="newsletter-form" onSubmit={handleSubmit}>
-            <input
-              type="email"
-              name="email"
-              placeholder="you@example.com"
-              required
-              disabled={status === "loading"}
-            />
-            <button type="submit" disabled={status === "loading"}>
-              {status === "loading" ? "..." : "Subscribe"}
-            </button>
-          </form>
+          <div className={styles.formWrapper}>
+            <form className={styles.form} action={formAction}>
+              <input
+                type="email"
+                name="email"
+                placeholder="you@example.com"
+                required
+                disabled={isPending}
+              />
+              <button type="submit" disabled={isPending}>
+                {isPending ? "..." : "Subscribe"}
+              </button>
+            </form>
+            {state?.error && (
+              <div className={styles.error}>
+                {state.error}
+              </div>
+            )}
+          </div>
         )}
       </div>
     </section>

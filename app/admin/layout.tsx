@@ -16,7 +16,7 @@ export default async function AdminLayout({
 
   return (
     <AdminLayoutClient
-      role={(session.user as any).role || "viewer"}
+      role={session.user.role || "viewer"}
       username={session.user.name || "user"}
     >
       {children}

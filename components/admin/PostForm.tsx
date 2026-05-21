@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { createPost, updatePost } from "@/app/actions/admin";
+import { useState, useActionState } from "react";
+import { createPost, updatePost, ActionState } from "@/app/actions/admin";
 import Link from "next/link";
 import { Post } from "@prisma/client";
 
@@ -14,7 +14,13 @@ export default function PostForm({
 }) {
   const [slugEdited, setSlugEdited] = useState(!!post);
   const [slug, setSlug] = useState(post?.slug || "");
-  const [isSaving, setIsSaving] = useState(false);
+
+  // Bind the id if we are updating
+  const actionWithId = post ? updatePost.bind(null, post.id) : createPost;
+  
+  const [state, formAction, isPending] = useActionState(actionWithId, {
+    error: undefined,
+  });
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (!slugEdited) {
@@ -26,17 +32,14 @@ export default function PostForm({
     }
   };
 
-  const handleAction = async (formData: FormData) => {
-    setIsSaving(true);
-    if (post) {
-      await updatePost(post.id, formData);
-    } else {
-      await createPost(formData);
-    }
-  };
-
   return (
-    <form className="admin-form" action={handleAction}>
+    <form className="admin-form" action={formAction}>
+      {state?.error && (
+        <div className="admin-error-banner" style={{ marginBottom: "1rem", padding: "0.75rem", background: "rgba(220, 38, 38, 0.1)", border: "1px solid var(--error)", color: "var(--error)", borderRadius: "var(--radius)" }}>
+          {state.error}
+        </div>
+      )}
+
       <div className="form-row">
         <div className="form-group">
           <label htmlFor="title">Title</label>
@@ -47,7 +50,7 @@ export default function PostForm({
             defaultValue={post?.title || ""}
             required
             onChange={handleTitleChange}
-            disabled={isSaving}
+            disabled={isPending}
           />
         </div>
         <div className="form-group">
@@ -60,7 +63,7 @@ export default function PostForm({
             required
             onFocus={() => setSlugEdited(true)}
             onChange={(e) => setSlug(e.target.value)}
-            disabled={isSaving}
+            disabled={isPending}
           />
         </div>
       </div>
@@ -74,7 +77,7 @@ export default function PostForm({
             defaultValue={post?.tag || ""}
             list="tag-list"
             required
-            disabled={isSaving}
+            disabled={isPending}
           />
           <datalist id="tag-list">
             {tags.map((t) => (
@@ -90,7 +93,7 @@ export default function PostForm({
             name="read_time"
             defaultValue={post?.read_time || 5}
             min="1"
-            disabled={isSaving}
+            disabled={isPending}
           />
         </div>
         <div className="form-group">
@@ -99,9 +102,9 @@ export default function PostForm({
             type="date"
             id="published_at"
             name="published_at"
-            defaultValue={post?.published_at || ""}
+            defaultValue={post?.published_at ? new Date(post.published_at).toISOString().split('T')[0] : ""}
             required
-            disabled={isSaving}
+            disabled={isPending}
           />
         </div>
       </div>
@@ -113,7 +116,7 @@ export default function PostForm({
           rows={3}
           required
           defaultValue={post?.excerpt || ""}
-          disabled={isSaving}
+          disabled={isPending}
         ></textarea>
       </div>
       <div className="form-group">
@@ -123,12 +126,12 @@ export default function PostForm({
           name="content"
           rows={16}
           defaultValue={post?.content || ""}
-          disabled={isSaving}
+          disabled={isPending}
         ></textarea>
       </div>
       <div className="admin-form-actions">
-        <button type="submit" className="btn btn-primary" disabled={isSaving}>
-          {isSaving ? "Saving..." : post ? "Save changes" : "Create post"}
+        <button type="submit" className="btn btn-primary" disabled={isPending}>
+          {isPending ? "Saving..." : post ? "Save changes" : "Create post"}
         </button>
         <Link href="/admin/posts" className="btn btn-outline">
           Cancel

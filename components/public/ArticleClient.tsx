@@ -41,9 +41,13 @@ export function CopyLinkButton() {
   );
 }
 
+import DOMPurify from "isomorphic-dompurify";
+
 export function ArticleBody({ content }: { content: string }) {
   const contentRef = useRef<HTMLDivElement>(null);
   const [toc, setToc] = useState<{ id: string; text: string; tag: string }[]>([]);
+
+  const sanitizedContent = DOMPurify.sanitize(content);
 
   useEffect(() => {
     if (contentRef.current) {
@@ -58,7 +62,7 @@ export function ArticleBody({ content }: { content: string }) {
 
       setToc(tocItems);
     }
-  }, [content]);
+  }, [sanitizedContent]);
 
   return (
     <>
@@ -80,7 +84,7 @@ export function ArticleBody({ content }: { content: string }) {
       <div
         className="article-body"
         ref={contentRef}
-        dangerouslySetInnerHTML={{ __html: content }}
+        dangerouslySetInnerHTML={{ __html: sanitizedContent }}
       />
     </>
   );

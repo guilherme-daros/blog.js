@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default async function AdminDashboard() {
   const post_count = await prisma.post.count();
   const msg_count = await prisma.message.count();
-  const unread_count = await prisma.message.count({ where: { read: 0 } });
+  const unread_count = await prisma.message.count({ where: { read: false } });
   const sub_count = await prisma.subscriber.count();
 
   const recent_posts = await prisma.post.findMany({
@@ -74,7 +74,7 @@ export default async function AdminDashboard() {
                     <td>
                       <span className="admin-tag">{post.tag}</span>
                     </td>
-                    <td className="mono">{post.published_at}</td>
+                    <td className="mono">{new Date(post.published_at).toISOString().slice(0, 10)}</td>
                   </tr>
                 ))}
               </tbody>
@@ -96,7 +96,7 @@ export default async function AdminDashboard() {
                 {recent_msgs.map((msg) => (
                   <tr key={msg.id}>
                     <td>
-                      {msg.read === 0 && <span className="unread-dot"></span>}
+                      {!msg.read && <span className="unread-dot"></span>}
                       {msg.name}
                     </td>
                     <td>{msg.subject || "(no subject)"}</td>

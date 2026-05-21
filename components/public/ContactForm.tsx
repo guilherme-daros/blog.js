@@ -1,21 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useActionState } from "react";
+import { submitContactForm } from "@/app/actions/public";
 
 export default function ContactForm() {
-  const [status, setStatus] = useState<"idle" | "loading" | "success">("idle");
+  const [state, formAction, isPending] = useActionState(submitContactForm, {
+    success: false,
+    error: undefined,
+  });
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setStatus("loading");
-    
-    // Simulate form submission
-    setTimeout(() => {
-      setStatus("success");
-    }, 1000);
-  };
-
-  if (status === "success") {
+  if (state?.success) {
     return (
       <div className="contact-result success">
         Your message has been sent successfully. I will get back to you soon.
@@ -24,7 +18,12 @@ export default function ContactForm() {
   }
 
   return (
-    <form className="contact-form" onSubmit={handleSubmit}>
+    <form className="contact-form" action={formAction}>
+      {state?.error && (
+        <div className="contact-error" style={{ marginBottom: "1rem", color: "var(--error)" }}>
+          {state.error}
+        </div>
+      )}
       <div className="form-row">
         <div className="form-group">
           <label htmlFor="name">
@@ -36,7 +35,7 @@ export default function ContactForm() {
             name="name"
             placeholder="Your name"
             required
-            disabled={status === "loading"}
+            disabled={isPending}
           />
         </div>
         <div className="form-group">
@@ -49,7 +48,7 @@ export default function ContactForm() {
             name="email"
             placeholder="you@example.com"
             required
-            disabled={status === "loading"}
+            disabled={isPending}
           />
         </div>
       </div>
@@ -60,7 +59,7 @@ export default function ContactForm() {
           id="subject"
           name="subject"
           placeholder="What's this about?"
-          disabled={status === "loading"}
+          disabled={isPending}
         />
       </div>
       <div className="form-group">
@@ -73,15 +72,15 @@ export default function ContactForm() {
           rows={6}
           placeholder="Your message..."
           required
-          disabled={status === "loading"}
+          disabled={isPending}
         ></textarea>
       </div>
       <button
         type="submit"
         className="btn btn-primary"
-        disabled={status === "loading"}
+        disabled={isPending}
       >
-        {status === "loading" ? "Sending..." : "Send message"}
+        {isPending ? "Sending..." : "Send message"}
       </button>
     </form>
   );

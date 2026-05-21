@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { updateSocialLinks } from "@/app/actions/admin";
+import { useState, useActionState, useEffect } from "react";
+import { updateSocialLinks, ActionState } from "@/app/actions/admin";
 import { useRouter } from "next/navigation";
 
 type SocialLinkInput = {
@@ -20,8 +20,21 @@ export default function SocialLinksForm({
   const [links, setLinks] = useState<SocialLinkInput[]>(
     initialLinks.map((link, i) => ({ ...link, sort_order: i }))
   );
-  const [isSaving, setIsSaving] = useState(false);
+  
   const router = useRouter();
+
+  const [state, formAction, isPending] = useActionState(
+    async (prevState: ActionState | null) => {
+      return updateSocialLinks(prevState, links);
+    },
+    { error: undefined, success: false }
+  );
+
+  useEffect(() => {
+    if (state?.success) {
+      router.refresh();
+    }
+  }, [state?.success, router]);
 
   const handleAdd = () => {
     setLinks([
@@ -44,16 +57,14 @@ export default function SocialLinksForm({
     setLinks(updated);
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSaving(true);
-    await updateSocialLinks(links);
-    setIsSaving(false);
-    router.refresh();
-  };
-
   return (
-    <form className="admin-form" onSubmit={handleSubmit}>
+    <form className="admin-form" action={formAction}>
+      {state?.error && (
+        <div className="admin-error-banner" style={{ marginBottom: "1rem", padding: "0.75rem", background: "rgba(220, 38, 38, 0.1)", border: "1px solid var(--error)", color: "var(--error)", borderRadius: "var(--radius)" }}>
+          {state.error}
+        </div>
+      )}
+      
       <div className="admin-social-list">
         {links.map((link, i) => (
           <div key={i} className="admin-social-card">
@@ -66,6 +77,7 @@ export default function SocialLinksForm({
                   onChange={(e) => handleChange(i, "platform", e.target.value)}
                   placeholder="e.g. Twitter"
                   required
+                  disabled={isPending}
                 />
               </div>
               <div className="form-group">
@@ -76,6 +88,7 @@ export default function SocialLinksForm({
                   onChange={(e) => handleChange(i, "url", e.target.value)}
                   placeholder="e.g. https://x.com"
                   required
+                  disabled={isPending}
                 />
               </div>
               <div className="form-group">
@@ -85,6 +98,7 @@ export default function SocialLinksForm({
                   value={link.handle}
                   onChange={(e) => handleChange(i, "handle", e.target.value)}
                   placeholder="e.g. @terminal"
+                  disabled={isPending}
                 />
               </div>
             </div>
@@ -92,6 +106,7 @@ export default function SocialLinksForm({
               type="button"
               className="admin-action-btn danger admin-social-del"
               onClick={() => handleRemove(i)}
+              disabled={isPending}
             >
               ×
             </button>
@@ -99,11 +114,11 @@ export default function SocialLinksForm({
         ))}
       </div>
       <div className="admin-form-actions">
-        <button type="button" className="btn btn-outline" onClick={handleAdd}>
+        <button type="button" className="btn btn-outline" onClick={handleAdd} disabled={isPending}>
           Add link
         </button>
-        <button type="submit" className="btn btn-primary" disabled={isSaving}>
-          {isSaving ? "Saving..." : "Save changes"}
+        <button type="submit" className="btn btn-primary" disabled={isPending}>
+          {isPending ? "Saving..." : "Save changes"}
         </button>
       </div>
     </form>

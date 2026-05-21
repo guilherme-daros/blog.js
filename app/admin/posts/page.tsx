@@ -44,10 +44,10 @@ export default async function AdminPosts() {
                 <td>
                   <span className="admin-tag">{post.tag}</span>
                 </td>
-                <td className="mono">{post.published_at}</td>
+                <td className="mono">{new Date(post.published_at).toISOString().slice(0, 10)}</td>
                 <td className="mono">{post.reads}</td>
                 <td>
-                  {post.is_featured === 1 ? (
+                  {post.is_featured ? (
                     <span className="admin-tag" style={{ borderColor: "var(--chart-green)", color: "var(--chart-green)" }}>
                       Yes
                     </span>

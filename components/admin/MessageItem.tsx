@@ -5,7 +5,7 @@ import { markMessageRead, deleteMessage } from "@/app/actions/admin";
 
 export default function MessageItem({ msg }: { msg: any }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [isRead, setIsRead] = useState(msg.read === 1);
+  const [isRead, setIsRead] = useState(msg.read);
   const [isDeleted, setIsDeleted] = useState(false);
 
   const toggleOpen = async () => {
