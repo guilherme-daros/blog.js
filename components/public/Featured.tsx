@@ -13,7 +13,7 @@ export default function Featured({ post }: { post: Post }) {
       <div className="featured-card">
         <div className="featured-body">
           <div className="post-meta">
-            <span className="tag">{post.tag}</span>
+            <Link href={`/archive?tag=${post.tag}`} className="tag tag-filter">{post.tag}</Link>
             <span>{new Date(post.published_at).toLocaleDateString()}</span>
             <span>&middot;</span>
             <span>{post.read_time} min read</span>

@@ -5,7 +5,7 @@ export default function PostCard({ post }: { post: Post }) {
   return (
     <article className="post-card">
       <div className="post-meta">
-        <Link href={`/?tag=${post.tag}`} className="tag tag-filter">
+        <Link href={`/archive?tag=${post.tag}`} className="tag tag-filter">
           {post.tag}
         </Link>
         <span>{new Date(post.published_at).toLocaleDateString()}</span>
