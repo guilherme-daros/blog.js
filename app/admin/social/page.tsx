@@ -35,7 +35,7 @@ export default async function AdminSocialLinks() {
             <thead>
               <tr>
                 <th>Platform</th>
-                <th>URL</th>
+                <th style={{ width: "100%" }}>URL</th>
                 <th>Handle</th>
               </tr>
             </thead>

@@ -6,14 +6,17 @@ export default function DeleteButton({
   id,
   action,
   confirmMessage = "Are you sure?",
+  disabled = false,
 }: {
   id: number;
   action: (id: number) => Promise<void>;
   confirmMessage?: string;
+  disabled?: boolean;
 }) {
   const [isPending, startTransition] = useTransition();
 
   const handleDelete = () => {
+    if (disabled) return;
     if (confirm(confirmMessage)) {
       startTransition(async () => {
         await action(id);
@@ -25,9 +28,9 @@ export default function DeleteButton({
     <button
       className="admin-action-btn danger"
       onClick={handleDelete}
-      disabled={isPending}
+      disabled={disabled || isPending}
     >
-      {isPending ? "..." : "Del"}
+      {isPending ? "..." : "DEL"}
     </button>
   );
 }

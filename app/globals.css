@@ -1951,7 +1951,7 @@ body {
 
 .admin-table th {
   font-family: var(--font-mono);
-  font-size: 10px;
+  font-size: 12px;
   letter-spacing: 1.2px;
   text-transform: uppercase;
   color: var(--muted-foreground);
@@ -1964,33 +1964,48 @@ body {
   padding: 10px 14px;
   border-top: 1px solid var(--ide-border);
   color: var(--foreground);
+  font-size: 10px;
 }
 
 .admin-table td.mono {
   font-family: var(--font-mono);
-  font-size: 12px;
+  font-size: 10px;
   color: var(--muted-foreground);
   white-space: nowrap;
+}
+
+.admin-table .btn,
+.admin-table .admin-tag {
+  font-size: 10px;
 }
 
 .admin-table a {
   color: #fff;
   text-decoration: none;
   transition: color 0.15s;
+  font-size: 13px;
+}
+
+.admin-table-primary {
+  font-size: 13px !important;
 }
 
 .admin-table a:hover { color: var(--primary); }
 
 .admin-tag {
   font-family: var(--font-mono);
-  font-size: 10px;
-  letter-spacing: 1px;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 1.92px;
   text-transform: uppercase;
   color: var(--primary);
   white-space: nowrap;
   border: 1px solid rgba(255, 107, 0, 0.3);
-  padding: 2px 6px;
+  padding: 4px 8px;
   border-radius: var(--radius);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 /* Admin actions */
@@ -2017,9 +2032,20 @@ body {
   border-color: #444;
 }
 
-.admin-action-btn.danger:hover {
+.admin-action-btn.danger {
   color: var(--error);
   border-color: var(--error);
+}
+
+.admin-action-btn.danger:hover:not(:disabled) {
+  background: rgba(220, 38, 38, 0.1);
+}
+
+.admin-action-btn.danger:disabled {
+  color: var(--muted-foreground);
+  border-color: var(--ide-border);
+  background: transparent;
+  cursor: not-allowed;
 }
 
 /* Featured star */

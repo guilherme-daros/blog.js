@@ -2,6 +2,8 @@ import prisma from "@/lib/prisma";
 import Link from "next/link";
 import { Metadata } from "next";
 import MessageItem from "@/components/admin/MessageItem";
+import AdminPageLayout from "@/components/admin/AdminPageLayout";
+import AdminTable from "@/components/admin/AdminTable";
 
 export const metadata: Metadata = {
   title: "Messages — Terminal Admin",
@@ -20,15 +22,12 @@ export default async function AdminMessages({
   });
 
   return (
-    <>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: "2rem" }}>
-        <div style={{ display: "flex", alignItems: "baseline", gap: "1rem" }}>
-          <h2 style={{ margin: 0 }}>Messages</h2>
-          <span className="admin-count" style={{ margin: 0 }}>
-            {messages.length} message{messages.length !== 1 ? "s" : ""}
-          </span>
-        </div>
-        <div style={{ display: "flex", gap: "0.5rem" }}>
+    <AdminPageLayout
+      title="Messages"
+      count={messages.length}
+      itemName="message"
+      action={
+        <>
           <Link
             href={`/admin/messages${!isUnreadFirst ? "?unread_first=1" : ""}`}
             className={`btn btn-outline ${isUnreadFirst ? "btn-active" : ""}`}
@@ -41,24 +40,23 @@ export default async function AdminMessages({
           >
             Refresh
           </Link>
-        </div>
-      </div>
-
-      <div id="message-list-wrap">
-        {messages.length > 0 ? (
-          <div className="admin-message-list">
-            <div className="admin-message-list-header">
-              <span>Subject</span>
-              <span>Date</span>
-            </div>
-            {messages.map((msg) => (
-              <MessageItem key={msg.id} msg={msg} />
-            ))}
-          </div>
-        ) : (
-          <p className="admin-empty">No messages yet.</p>
-        )}
-      </div>
-    </>
+        </>
+      }
+    >
+      <AdminTable
+        isEmpty={messages.length === 0}
+        emptyMessage="No messages yet."
+        headers={[
+          <th key="id">ID</th>,
+          <th style={{ width: "100%" }} key="sub">Subject</th>,
+          <th key="date">Date</th>,
+          <th style={{ width: "80px" }} key="acts">Actions</th>,
+        ]}
+      >
+        {messages.map((msg) => (
+          <MessageItem key={msg.id} msg={msg} />
+        ))}
+      </AdminTable>
+    </AdminPageLayout>
   );
 }
