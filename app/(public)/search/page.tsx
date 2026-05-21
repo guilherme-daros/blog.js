@@ -24,12 +24,15 @@ export default async function SearchPage({
 
   let results: any[] = [];
   if (query) {
+    // Format query for Postgres to search for any of the words
+    const searchQuery = query.trim().split(/\s+/).join(' | ');
+
     results = await prisma.post.findMany({
       where: {
         OR: [
-          { title: { contains: query } },
-          { excerpt: { contains: query } },
-          { content: { contains: query } },
+          { title: { search: searchQuery } },
+          { excerpt: { search: searchQuery } },
+          { content: { search: searchQuery } },
         ],
       },
       orderBy: { id: "desc" },
