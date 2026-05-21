@@ -1,11 +1,15 @@
 const { PrismaClient } = require('@prisma/client');
+const { PrismaPg } = require('@prisma/adapter-pg');
+const { Pool } = require('pg');
 const fs = require('fs');
 const path = require('path');
 
-const prisma = new PrismaClient();
+const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+const adapter = new PrismaPg(pool);
+const prisma = new PrismaClient({ adapter });
 
 async function main() {
-  const dataPath = path.join(__dirname, 'db_export.json');
+  const dataPath = path.join(__dirname, '..', 'prisma', 'db_export.json');
   if (!fs.existsSync(dataPath)) {
     console.error('db_export.json not found');
     return;
@@ -47,8 +51,8 @@ async function main() {
         read_time: post.read_time,
         reads: post.reads,
         reads_trend: post.reads_trend,
-        published_at: post.published_at,
-        is_featured: post.is_featured,
+        published_at: new Date(post.published_at),
+        is_featured: post.is_featured === 1 || post.is_featured === true,
       }});
     }
   }
