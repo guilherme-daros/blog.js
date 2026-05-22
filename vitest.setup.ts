@@ -44,12 +44,25 @@ vi.mock('react', async (importOriginal) => {
     ...actual,
     useTransition: () => [false, (cb: any) => cb()],
     useActionState: (action: any, initialState: any) => {
-      // Very basic mock of useActionState
-      const state = initialState;
+      const [state, setState] = actual.useState(initialState);
+      const [isPending, setIsPending] = actual.useState(false);
       const dispatch = async (payload: any) => {
-        await action(state, payload);
+        setIsPending(true);
+        try {
+          let formData = payload;
+          if (payload && typeof payload.preventDefault === 'function') {
+            payload.preventDefault();
+            formData = new FormData(payload.target);
+          } else if (payload instanceof HTMLFormElement) {
+            formData = new FormData(payload);
+          }
+          const result = await action(state, formData);
+          setState(result);
+        } finally {
+          setIsPending(false);
+        }
       };
-      return [state, dispatch, false];
+      return [state, dispatch, isPending];
     }
   };
 });
