@@ -1,36 +1,105 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Blog-JS
 
-## Getting Started
+A modern, full-stack blog platform built using **Next.js 15 (App Router)**, featuring a public-facing website and a secure administrative dashboard.
 
-First, run the development server:
+## 🚀 Key Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Public Blog**: Interactive interface for browsing, searching, and reading blog posts.
+- **Admin Dashboard**: Secure management system for posts, user accounts, messages, subscribers, and social links.
+- **Service Layer Architecture**: Clean separation of concerns with domain logic encapsulated in a dedicated service layer.
+- **Robust Authentication**: Session-based authentication with NextAuth.js, augmented with custom user roles.
+- **Data Validation & Sanitization**: Seamless validation with Zod and sanitization via Isomorphic DOMPurify to prevent XSS.
+- **Comprehensive Test Suite**: Over 110 unit and integration tests using Vitest and React Testing Library.
+
+---
+
+## 🛠️ Technology Stack
+
+- **Framework**: Next.js 15 (App Router, Server Actions)
+- **Database ORM**: Prisma Client
+- **Database**: PostgreSQL (Dockerized for local development)
+- **Authentication**: NextAuth.js
+- **Validation**: Zod
+- **Styling**: CSS Modules
+- **Testing**: Vitest & React Testing Library
+- **Local Dev Tooling**: Docker, Bash scripts
+
+---
+
+## 📁 Directory Structure
+
+```text
+├── app/                  # Next.js App Router pages and layouts
+│   ├── (public)/         # Route group for all public-facing pages (e.g., blog, home)
+│   ├── admin/            # Route group for the admin dashboard (protected by middleware)
+│   ├── actions/          # Next.js Server Actions for data mutations (admin.ts, public.ts)
+│   └── login/            # Authentication login route
+├── components/           # Reusable React components
+│   ├── admin/            # Components specific to the admin interface
+│   ├── public/           # Components specific to the public interface
+│   └── ui/               # Shared, generic UI components (Button, Input, Card)
+├── lib/                  # Core configuration and business logic
+│   ├── services/         # Service layer housing domain-specific business logic (postService, etc.)
+│   ├── auth.ts           # NextAuth.js configuration
+│   └── prisma.ts         # Prisma client initialization
+├── prisma/               # Database schema and seed scripts
+│   ├── schema.prisma     # The central database schema definition
+│   └── seed.js           # Database seed script
+├── scripts/              # Utility scripts for development
+│   ├── dev.sh            # Local dev runner (starts Postgres in Docker, runs db push, runs dev server)
+│   └── sync-db.sh        # Database sync runner
+└── vitest.setup.ts       # Test environment and component mock configuration
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 💻 Getting Started
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Prerequisites
 
-## Learn More
+Ensure you have the following installed on your machine:
+- **Node.js** (v20+ recommended)
+- **Docker** and **Docker Compose**
+- **npm** (or your preferred package manager)
 
-To learn more about Next.js, take a look at the following resources:
+### Local Development
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Install Dependencies**:
+   ```bash
+   npm install
+   ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+2. **Start the Development Environment**:
+   Run the local development runner script which spins up the PostgreSQL Docker container, synchronizes schemas, and starts the Next.js dev server:
+   ```bash
+   npm run dev:local
+   ```
+   *Note: This executes `./scripts/dev.sh` under the hood.*
 
-## Deploy on Vercel
+3. **Synchronize Database**:
+   If you need to manually synchronize database schema migrations or state:
+   ```bash
+   npm run db:sync
+   ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Running Tests
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The codebase includes an extensive suite of unit and integration tests covering server actions, service layers, components, and routing pages.
+
+To execute tests via Vitest:
+```bash
+npm run test
+```
+
+---
+
+## 🏗️ Architecture & Development Guidelines
+
+- **Service Layer Pattern**: Avoid placing heavy business logic directly inside Server Actions or page components. Encapsulate business rules inside `lib/services/`. Server actions should handle routing, request parsing, and Zod validations before passing sanitized data to the services.
+- **Form Validation**: Always define and validate schema types with **Zod** at boundaries (such as Server Actions) before initiating database calls or passing payloads to domain services.
+- **Authentication**: NextAuth handles user session state. Secure routes under `/admin/` are automatically protected via `middleware.ts`.
+- **Database Modifications**: When updating schemas:
+  1. Modify `prisma/schema.prisma`.
+  2. Sync your local database: `npx prisma db push`.
+  3. Ensure types are generated: `npx prisma generate` (automatically handled during `postinstall`).
+- **Styling**: Styled using CSS Modules (`*.module.css`) to prevent global style leakage. Keep generic, reusable elements inside `components/ui/`.
