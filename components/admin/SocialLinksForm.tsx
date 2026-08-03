@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useActionState, useEffect } from "react";
-import { updateSocialLinks, ActionState } from "@/app/actions/admin";
+import { updateSocialLinks } from "@/app/actions/admin";
 import { useRouter } from "next/navigation";
-
+import { Button } from "@/components/ui/Button";
 import AdminPageLayout from "@/components/admin/AdminPageLayout";
 import AdminTable from "@/components/admin/AdminTable";
 
@@ -23,11 +23,11 @@ export default function SocialLinksForm({
   const [links, setLinks] = useState<SocialLinkInput[]>(
     initialLinks.map((link, i) => ({ ...link, sort_order: i }))
   );
-  
+
   const router = useRouter();
 
   const [state, formAction, isPending] = useActionState(
-    async (prevState: ActionState | null) => {
+    async (prevState: any) => {
       return updateSocialLinks(prevState, links);
     },
     { error: undefined, success: false }
@@ -61,18 +61,21 @@ export default function SocialLinksForm({
   };
 
   const actionButtons = (
-    <>
-      <button type="button" className="btn btn-outline" onClick={handleAdd} disabled={isPending}>
+    <div className="flex gap-2">
+      <Button type="button" variant="outline" onClick={handleAdd} disabled={isPending}>
         Add link
-      </button>
-      <button type="submit" className="btn btn-primary" disabled={isPending}>
+      </Button>
+      <Button type="submit" disabled={isPending}>
         {isPending ? "Saving..." : "Save changes"}
-      </button>
-    </>
+      </Button>
+    </div>
   );
 
+  const inputClass =
+    "w-full bg-transparent border-none text-inherit outline-none py-1 focus:outline-none";
+
   return (
-    <form action={formAction} style={{ width: "100%" }}>
+    <form action={formAction} className="w-full">
       <AdminPageLayout
         title="Social Links"
         count={links.length}
@@ -80,19 +83,19 @@ export default function SocialLinksForm({
         action={actionButtons}
       >
         {state?.error && (
-          <div className="admin-error-banner" style={{ marginBottom: "1rem", padding: "0.75rem", background: "rgba(220, 38, 38, 0.1)", border: "1px solid var(--error)", color: "var(--error)", borderRadius: "var(--radius)" }}>
+          <div className="mb-4 p-3 bg-destructive/10 border border-destructive text-destructive rounded-[var(--radius)] text-sm">
             {state.error}
           </div>
         )}
-        
-        <div style={{ marginBottom: "1rem" }}>
+
+        <div className="mb-4">
           <AdminTable
             headers={[
               <th key="id">ID</th>,
               <th key="platform">Platform</th>,
               <th key="url">URL</th>,
               <th key="handle">Handle</th>,
-              <th style={{ width: "80px" }} key="acts">Actions</th>
+              <th style={{ width: "80px" }} key="acts">Actions</th>,
             ]}
           >
             {links.map((link, i) => (
@@ -106,8 +109,7 @@ export default function SocialLinksForm({
                     placeholder="e.g. Twitter"
                     required
                     disabled={isPending}
-                    style={{ width: "100%", background: "transparent", border: "none", color: "inherit", outline: "none", padding: "4px 0" }}
-                    className="admin-table-primary"
+                    className={inputClass}
                   />
                 </td>
                 <td>
@@ -118,7 +120,7 @@ export default function SocialLinksForm({
                     placeholder="e.g. https://x.com"
                     required
                     disabled={isPending}
-                    style={{ width: "100%", background: "transparent", border: "none", color: "inherit", outline: "none", padding: "4px 0" }}
+                    className={inputClass}
                   />
                 </td>
                 <td>
@@ -128,13 +130,13 @@ export default function SocialLinksForm({
                     onChange={(e) => handleChange(i, "handle", e.target.value)}
                     placeholder="e.g. @terminal"
                     disabled={isPending}
-                    style={{ width: "100%", background: "transparent", border: "none", color: "inherit", outline: "none", padding: "4px 0" }}
+                    className={inputClass}
                   />
                 </td>
                 <td>
                   <button
                     type="button"
-                    className="admin-action-btn danger"
+                    className="font-mono text-[11px] bg-transparent text-destructive border border-destructive rounded-[var(--radius)] px-[10px] py-1 cursor-pointer transition-colors duration-150 hover:bg-destructive/10 disabled:text-muted-foreground disabled:border-border disabled:bg-transparent disabled:cursor-not-allowed"
                     onClick={() => handleRemove(i)}
                     disabled={isPending}
                   >

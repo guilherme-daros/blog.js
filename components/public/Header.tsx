@@ -2,28 +2,40 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import styles from "./Header.module.css";
 
 export default function Header() {
   const pathname = usePathname();
 
+  const linkClass =
+    "font-mono text-[11px] leading-[16.5px] no-underline uppercase tracking-[1.5px] transition-colors duration-200 inline-block before:content-['['] before:mr-[0.25em] before:opacity-0 before:transition-opacity before:duration-200 before:inline-block hover:before:opacity-100 hover:before:text-primary after:content-[']'] after:ml-[0.25em] after:opacity-0 after:transition-opacity after:duration-200 after:inline-block hover:after:opacity-100 hover:after:text-primary";
+
   return (
-    <header className={styles.header}>
-      <div className={styles.inner}>
-        <Link href="/" className={styles.logo}>
-          Terminal<span>.</span>blog
+    <header className="fixed top-0 left-0 right-0 z-40 bg-[rgba(10,10,10,0.95)] backdrop-blur-md border-b border-border">
+      <div className="max-w-[80rem] mx-auto px-6 py-3 flex flex-wrap items-center gap-x-8 gap-y-2 max-[820px]:gap-y-3">
+        <Link
+          href="/"
+          className="font-mono text-sm font-medium text-white no-underline tracking-[1.92px] uppercase order-0 max-[820px]:flex-1"
+        >
+          Terminal<span className="text-primary">.</span>blog
         </Link>
-        <nav className={styles.nav}>
-          <ul className={styles.navLinks}>
+        <nav className="order-0 max-[820px]:order-2 max-[820px]:w-full">
+          <ul className="flex gap-8 list-none max-[820px]:justify-center max-[820px]:gap-6 p-0 m-0">
             <li>
-              <Link href="/" className={pathname === "/" ? styles.active : ""}>
+              <Link
+                href="/"
+                className={`${linkClass} ${
+                  pathname === "/" ? "text-white" : "text-muted-foreground hover:text-white"
+                }`}
+              >
                 Home
               </Link>
             </li>
             <li>
               <Link
                 href="/archive"
-                className={pathname === "/archive" ? styles.active : ""}
+                className={`${linkClass} ${
+                  pathname === "/archive" ? "text-white" : "text-muted-foreground hover:text-white"
+                }`}
               >
                 Archive
               </Link>
@@ -31,7 +43,9 @@ export default function Header() {
             <li>
               <Link
                 href="/about"
-                className={pathname === "/about" ? styles.active : ""}
+                className={`${linkClass} ${
+                  pathname === "/about" ? "text-white" : "text-muted-foreground hover:text-white"
+                }`}
               >
                 About
               </Link>
@@ -39,19 +53,22 @@ export default function Header() {
             <li>
               <Link
                 href="/contact"
-                className={pathname === "/contact" ? styles.active : ""}
+                className={`${linkClass} ${
+                  pathname === "/contact" ? "text-white" : "text-muted-foreground hover:text-white"
+                }`}
               >
                 Contact
               </Link>
             </li>
           </ul>
         </nav>
-        <form className={styles.search} action="/search" method="GET">
+        <form className="order-1 ml-auto" action="/search" method="GET">
           <input
             type="text"
             name="q"
             placeholder="Search..."
             aria-label="Search"
+            className="font-mono text-xs text-foreground bg-background border border-border rounded-[var(--radius)] py-[6px] px-3 w-40 outline-none transition-all duration-200 focus:border-primary focus:w-[220px] placeholder:text-muted-foreground"
           />
         </form>
       </div>

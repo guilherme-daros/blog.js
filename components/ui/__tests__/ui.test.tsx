@@ -22,10 +22,9 @@ describe('UI Components', () => {
     it('applies variant classes correctly', () => {
       render(<Button variant="ghost">Ghost</Button>);
       const button = screen.getByRole('button', { name: /ghost/i });
-      // Since CSS modules hash classes, we just check if it has multiple classes
-      // and doesn't crash
-      expect(button.className).toContain('btn');
-      expect(button.className).toContain('ghost');
+      // Verify that it contains Tailwind utility classes for the ghost variant
+      expect(button.className).toContain('bg-transparent');
+      expect(button.className).toContain('text-muted-foreground');
     });
   });
 

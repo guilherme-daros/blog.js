@@ -1,9 +1,11 @@
 "use client";
 
 import { useState, useActionState } from "react";
-import { createPost, updatePost, ActionState } from "@/app/actions/admin";
+import { createPost, updatePost } from "@/app/actions/admin";
 import Link from "next/link";
 import { Post } from "@prisma/client";
+import { Button } from "@/components/ui/Button";
+import { Input } from "@/components/ui/Input";
 
 export default function PostForm({
   post,
@@ -17,7 +19,7 @@ export default function PostForm({
 
   // Bind the id if we are updating
   const actionWithId = post ? updatePost.bind(null, post.id) : createPost;
-  
+
   const [state, formAction, isPending] = useActionState(actionWithId, {
     error: undefined,
   });
@@ -32,48 +34,50 @@ export default function PostForm({
     }
   };
 
+  const textareaClass =
+    "w-full bg-background border border-border rounded-[var(--radius)] px-4 py-2 font-mono text-sm tracking-[-0.017em] text-foreground focus:border-primary outline-none transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed";
+
   return (
-    <form className="admin-form" action={formAction}>
+    <form className="space-y-6" action={formAction}>
       {state?.error && (
-        <div className="admin-error-banner" style={{ marginBottom: "1rem", padding: "0.75rem", background: "rgba(220, 38, 38, 0.1)", border: "1px solid var(--error)", color: "var(--error)", borderRadius: "var(--radius)" }}>
+        <div className="mb-4 p-3 bg-destructive/10 border border-destructive text-destructive rounded-[var(--radius)] text-sm">
           {state.error}
         </div>
       )}
 
-      <div className="form-row">
-        <div className="form-group">
-          <label htmlFor="title">Title</label>
-          <input
-            type="text"
-            id="title"
-            name="title"
-            defaultValue={post?.title || ""}
-            required
-            onChange={handleTitleChange}
-            disabled={isPending}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="slug">Slug</label>
-          <input
-            type="text"
-            id="slug"
-            name="slug"
-            value={slug}
-            required
-            onFocus={() => setSlugEdited(true)}
-            onChange={(e) => setSlug(e.target.value)}
-            disabled={isPending}
-          />
-        </div>
+      <div className="flex flex-col md:flex-row gap-4">
+        <Input
+          type="text"
+          id="title"
+          name="title"
+          label="Title"
+          defaultValue={post?.title || ""}
+          required
+          onChange={handleTitleChange}
+          disabled={isPending}
+          className="w-full"
+        />
+        <Input
+          type="text"
+          id="slug"
+          name="slug"
+          label="Slug"
+          value={slug}
+          required
+          onFocus={() => setSlugEdited(true)}
+          onChange={(e) => setSlug(e.target.value)}
+          disabled={isPending}
+          className="w-full"
+        />
       </div>
-      <div className="form-row">
-        <div className="form-group">
-          <label htmlFor="tag">Tag</label>
-          <input
+
+      <div className="flex flex-col md:flex-row gap-4">
+        <div className="w-full">
+          <Input
             type="text"
             id="tag"
             name="tag"
+            label="Tag"
             defaultValue={post?.tag || ""}
             list="tag-list"
             required
@@ -85,31 +89,39 @@ export default function PostForm({
             ))}
           </datalist>
         </div>
-        <div className="form-group">
-          <label htmlFor="read_time">Read time (min)</label>
-          <input
-            type="number"
-            id="read_time"
-            name="read_time"
-            defaultValue={post?.read_time || 5}
-            min="1"
-            disabled={isPending}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="published_at">Published date</label>
-          <input
-            type="date"
-            id="published_at"
-            name="published_at"
-            defaultValue={post?.published_at ? new Date(post.published_at).toISOString().split('T')[0] : ""}
-            required
-            disabled={isPending}
-          />
-        </div>
+        <Input
+          type="number"
+          id="read_time"
+          name="read_time"
+          label="Read time (min)"
+          defaultValue={post?.read_time || 5}
+          min="1"
+          disabled={isPending}
+          className="w-full"
+        />
+        <Input
+          type="date"
+          id="published_at"
+          name="published_at"
+          label="Published date"
+          defaultValue={
+            post?.published_at
+              ? new Date(post.published_at).toISOString().split("T")[0]
+              : ""
+          }
+          required
+          disabled={isPending}
+          className="w-full"
+        />
       </div>
-      <div className="form-group">
-        <label htmlFor="excerpt">Excerpt</label>
+
+      <div className="flex flex-col gap-2">
+        <label
+          htmlFor="excerpt"
+          className="block font-mono text-[11px] uppercase tracking-[1px] text-muted-foreground"
+        >
+          Excerpt
+        </label>
         <textarea
           id="excerpt"
           name="excerpt"
@@ -117,25 +129,34 @@ export default function PostForm({
           required
           defaultValue={post?.excerpt || ""}
           disabled={isPending}
+          className={textareaClass}
         ></textarea>
       </div>
-      <div className="form-group">
-        <label htmlFor="content">Content (HTML)</label>
+
+      <div className="flex flex-col gap-2">
+        <label
+          htmlFor="content"
+          className="block font-mono text-[11px] uppercase tracking-[1px] text-muted-foreground"
+        >
+          Content (HTML)
+        </label>
         <textarea
           id="content"
           name="content"
           rows={16}
           defaultValue={post?.content || ""}
           disabled={isPending}
+          className={textareaClass}
         ></textarea>
       </div>
-      <div className="admin-form-actions">
-        <button type="submit" className="btn btn-primary" disabled={isPending}>
+
+      <div className="flex items-center gap-3 pt-4">
+        <Button type="submit" disabled={isPending}>
           {isPending ? "Saving..." : post ? "Save changes" : "Create post"}
-        </button>
-        <Link href="/admin/posts" className="btn btn-outline">
+        </Button>
+        <Button variant="outline" href="/admin/posts" type="button">
           Cancel
-        </Link>
+        </Button>
       </div>
     </form>
   );
