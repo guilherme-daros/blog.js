@@ -24,6 +24,6 @@ describe('RootLayout', () => {
     const body = Layout.props.children[1];
     expect(head.type).toBe('head');
     expect(body.type).toBe('body');
-    expect(body.props.children.props['data-testid']).toBe('child');
+    expect(body.props.children[0].props['data-testid']).toBe('child');
   });
 });
