@@ -1,10 +1,11 @@
 import * as React from "react";
 import Link from "next/link";
+import { Slot } from "@radix-ui/react-slot";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-[var(--radius)] text-xs font-mono font-normal leading-[18px] tracking-[1.92px] uppercase no-underline cursor-pointer transition-all duration-200 border border-transparent disabled:opacity-50 disabled:cursor-not-allowed",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[var(--radius)] text-xs font-mono font-normal leading-[18px] tracking-[1.92px] uppercase no-underline cursor-pointer transition-all duration-200 border border-transparent disabled:opacity-50 disabled:cursor-not-allowed [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
@@ -13,9 +14,16 @@ const buttonVariants = cva(
         ghost: "bg-transparent text-muted-foreground hover:text-white",
         active: "bg-transparent text-primary border-primary",
       },
+      size: {
+        default: "py-3 px-7",
+        sm: "h-9 rounded-md px-3",
+        lg: "h-11 rounded-md px-8",
+        icon: "h-10 w-10 p-0",
+      },
     },
     defaultVariants: {
       variant: "primary",
+      size: "default",
     },
   }
 );
@@ -24,11 +32,12 @@ export interface ButtonProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof buttonVariants> {
   href?: string;
+  asChild?: boolean;
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ className, variant, href, children, ...props }, ref) => {
-    const combinedClassName = cn(buttonVariants({ variant, className }));
+  ({ className, variant, size, href, asChild = false, children, ...props }, ref) => {
+    const combinedClassName = cn(buttonVariants({ variant, size, className }));
 
     if (href) {
       return (
@@ -38,10 +47,11 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       );
     }
 
+    const Comp = asChild ? Slot : "button";
     return (
-      <button className={combinedClassName} ref={ref} {...props}>
+      <Comp className={combinedClassName} ref={ref} {...props}>
         {children}
-      </button>
+      </Comp>
     );
   }
 );

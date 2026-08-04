@@ -3,7 +3,8 @@
 import { useState, useActionState, useEffect } from "react";
 import { updateSocialLinks } from "@/app/actions/admin";
 import { useRouter } from "next/navigation";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui/button";
+import { Alert } from "@/components/ui/alert";
 import AdminPageLayout from "@/components/admin/AdminPageLayout";
 import AdminTable from "@/components/admin/AdminTable";
 
@@ -83,9 +84,9 @@ export default function SocialLinksForm({
         action={actionButtons}
       >
         {state?.error && (
-          <div className="mb-4 p-3 bg-destructive/10 border border-destructive text-destructive rounded-[var(--radius)] text-sm">
+          <Alert variant="destructive" className="mb-4">
             {state.error}
-          </div>
+          </Alert>
         )}
 
         <div className="mb-4">

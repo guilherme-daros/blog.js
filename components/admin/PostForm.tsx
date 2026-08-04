@@ -2,10 +2,12 @@
 
 import { useState, useActionState } from "react";
 import { createPost, updatePost } from "@/app/actions/admin";
-import Link from "next/link";
 import { Post } from "@prisma/client";
-import { Button } from "@/components/ui/Button";
-import { Input } from "@/components/ui/Input";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Alert } from "@/components/ui/alert";
 
 export default function PostForm({
   post,
@@ -34,15 +36,12 @@ export default function PostForm({
     }
   };
 
-  const textareaClass =
-    "w-full bg-background border border-border rounded-[var(--radius)] px-4 py-2 font-mono text-sm tracking-[-0.017em] text-foreground focus:border-primary outline-none transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed";
-
   return (
     <form className="space-y-6" action={formAction}>
       {state?.error && (
-        <div className="mb-4 p-3 bg-destructive/10 border border-destructive text-destructive rounded-[var(--radius)] text-sm">
+        <Alert variant="destructive" className="mb-4">
           {state.error}
-        </div>
+        </Alert>
       )}
 
       <div className="flex flex-col md:flex-row gap-4">
@@ -116,38 +115,26 @@ export default function PostForm({
       </div>
 
       <div className="flex flex-col gap-2">
-        <label
-          htmlFor="excerpt"
-          className="block font-mono text-[11px] uppercase tracking-[1px] text-muted-foreground"
-        >
-          Excerpt
-        </label>
-        <textarea
+        <Label htmlFor="excerpt">Excerpt</Label>
+        <Textarea
           id="excerpt"
           name="excerpt"
           rows={3}
           required
           defaultValue={post?.excerpt || ""}
           disabled={isPending}
-          className={textareaClass}
-        ></textarea>
+        />
       </div>
 
       <div className="flex flex-col gap-2">
-        <label
-          htmlFor="content"
-          className="block font-mono text-[11px] uppercase tracking-[1px] text-muted-foreground"
-        >
-          Content (HTML)
-        </label>
-        <textarea
+        <Label htmlFor="content">Content (HTML)</Label>
+        <Textarea
           id="content"
           name="content"
           rows={16}
           defaultValue={post?.content || ""}
           disabled={isPending}
-          className={textareaClass}
-        ></textarea>
+        />
       </div>
 
       <div className="flex items-center gap-3 pt-4">

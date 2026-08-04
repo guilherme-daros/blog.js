@@ -36,7 +36,7 @@ graph TD
 
 > [!NOTE]
 > **Rule 4: Styling Conventions**
-> Keep styling encapsulated by using CSS Modules (`*.module.css`) to prevent global style leakage. Only modify global layouts in `./app/globals.css`.
+> The project uses **Tailwind CSS** for layout, typography, and styling. Shared design system primitives reside under `./components/ui/` (e.g., `Button`, `Input`, `Card`, `label`, `textarea`, `select`, `alert`, `dialog`, `table`). Avoid creating legacy CSS Modules (`*.module.css`); compile all visual components using Tailwind's styling tokens and utility classes.
 
 ---
 
@@ -60,6 +60,8 @@ For a quick reference of the codebase:
     *   [`lib/auth.ts`](./lib/auth.ts) — NextAuth.js handler setup.
     *   [`lib/prisma.ts`](./lib/prisma.ts) — Prisma Client initialization singleton.
     *   [`next.config.ts`](./next.config.ts) — Next.js platform settings.
+*   **UI Components & Shared Primitives**:
+    *   [`components/ui/`](./components/ui) — Shared design system primitives built with Tailwind CSS.
 
 ---
 

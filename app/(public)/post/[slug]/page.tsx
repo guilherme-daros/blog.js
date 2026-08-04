@@ -8,6 +8,7 @@ import {
 } from "@/components/public/ArticleClient";
 import PostCard from "@/components/public/PostCard";
 import { Metadata } from "next";
+import { Badge } from "@/components/ui/Badge";
 
 export async function generateMetadata({
   params,
@@ -64,8 +65,10 @@ export default async function PostPage({
           <Link href="/" className="article-back">
             ← Back to blog
           </Link>
-          <div className="post-meta">
-            <span className="tag">{post.tag}</span>
+          <div className="post-meta flex items-center gap-3 text-xs text-muted-foreground font-mono">
+            <Link href={`/archive?tag=${post.tag}`} className="no-underline">
+              <Badge variant="primary">{post.tag}</Badge>
+            </Link>
             <span>{new Date(post.published_at).toLocaleDateString()}</span>
             <span>&middot;</span>
             <span>{post.read_time} min read</span>

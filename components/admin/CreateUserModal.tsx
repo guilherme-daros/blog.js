@@ -9,8 +9,11 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/Button";
-import { Input } from "@/components/ui/Input";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Select } from "@/components/ui/select";
+import { Alert } from "@/components/ui/alert";
 
 export default function CreateUserModal() {
   const [isOpen, setIsOpen] = useState(false);
@@ -59,9 +62,9 @@ export default function CreateUserModal() {
         </DialogHeader>
 
         {error && (
-          <div className="mb-4 p-3 bg-destructive/10 border border-destructive text-destructive rounded-[var(--radius)] text-sm">
+          <Alert variant="destructive" className="mb-4">
             {error}
-          </div>
+          </Alert>
         )}
 
         <form action={handleSubmit} className="space-y-4">
@@ -86,21 +89,15 @@ export default function CreateUserModal() {
           />
 
           <div>
-            <label
-              className="block font-mono text-[11px] uppercase tracking-[1px] text-muted-foreground mb-2"
-              htmlFor="role"
-            >
-              Role
-            </label>
-            <select
+            <Label htmlFor="role">Role</Label>
+            <Select
               id="role"
               name="role"
-              className="w-full bg-background border border-border rounded-[var(--radius)] px-4 h-10 font-mono text-sm tracking-[-0.017em] text-foreground focus:border-primary outline-none transition-colors duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
               disabled={isSubmitting}
             >
               <option value="viewer">Viewer (read-only)</option>
               <option value="admin">Admin (full access)</option>
-            </select>
+            </Select>
           </div>
 
           <div className="flex justify-end gap-2 mt-6">

@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
-import { Button } from '../Button';
-import { Input } from '../Input';
+import { Button } from '../button';
+import { Input } from '../input';
 import { Card, CardHeader, CardBody, CardFooter } from '../Card';
 
 describe('UI Components', () => {

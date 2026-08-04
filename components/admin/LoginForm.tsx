@@ -3,8 +3,9 @@
 import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { Button } from "@/components/ui/Button";
-import { Input } from "@/components/ui/Input";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Alert } from "@/components/ui/alert";
 
 export default function LoginForm() {
   const router = useRouter();
@@ -50,9 +51,9 @@ export default function LoginForm() {
       </div>
 
       {error && (
-        <div className="font-mono text-[12px] text-destructive bg-destructive/10 border border-destructive/20 rounded-[var(--radius)] p-3 text-center">
+        <Alert variant="destructive" className="text-center justify-center">
           {error}
-        </div>
+        </Alert>
       )}
 
       <form className="flex flex-col gap-4" onSubmit={handleSubmit}>

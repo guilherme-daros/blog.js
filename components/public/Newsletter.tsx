@@ -2,6 +2,7 @@
 
 import { useActionState } from "react";
 import { subscribeNewsletter } from "@/app/actions/public";
+import { Alert } from "@/components/ui/alert";
 
 export default function Newsletter() {
   const [state, formAction, isPending] = useActionState(subscribeNewsletter, {
@@ -20,9 +21,11 @@ export default function Newsletter() {
           </p>
         </div>
         {state?.success ? (
-          <div className="font-mono text-sm text-[#16a34a]">✓ Subscribed successfully.</div>
+          <Alert variant="success" className="max-w-[320px]">
+            ✓ Subscribed successfully.
+          </Alert>
         ) : (
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-2 w-full max-w-[320px]">
             <form className="flex gap-0 shrink-0 max-[820px]:flex-col max-[820px]:w-full gap-y-2" action={formAction}>
               <input
                 type="email"
@@ -30,7 +33,7 @@ export default function Newsletter() {
                 placeholder="you@example.com"
                 required
                 disabled={isPending}
-                className="font-mono text-sm tracking-[-0.017em] text-foreground bg-background border border-[rgb(77,73,71)] border-r-0 max-[820px]:border-r max-[820px]:rounded-[var(--radius)] rounded-l-[var(--radius)] px-6 h-[54px] flex-1 min-w-0 max-[820px]:w-full max-w-[320px] outline-none transition-colors duration-200 focus:border-primary placeholder:text-muted-foreground"
+                className="font-mono text-sm tracking-[-0.017em] text-foreground bg-background border border-[rgb(77,73,71)] border-r-0 max-[820px]:border-r max-[820px]:rounded-[var(--radius)] rounded-l-[var(--radius)] px-6 h-[54px] flex-1 max-[820px]:flex-none min-w-0 max-[820px]:w-full max-w-[320px] outline-none transition-colors duration-200 focus:border-primary placeholder:text-muted-foreground"
               />
               <button
                 type="submit"
@@ -41,9 +44,9 @@ export default function Newsletter() {
               </button>
             </form>
             {state?.error && (
-              <div className="text-[0.85rem] text-destructive">
+              <Alert variant="destructive" className="py-2 text-xs">
                 {state.error}
-              </div>
+              </Alert>
             )}
           </div>
         )}
