@@ -35,7 +35,7 @@ export default function MessageItem({ msg }: { msg: any }) {
         <td className="mono">{msg.id}</td>
         <td className="admin-table-primary">
           <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-            <span style={{ color: !isRead ? "#fff" : "inherit" }}>
+            <span style={{ color: !isRead ? "var(--heading-color)" : "inherit" }}>
               {msg.subject || "(no subject)"}
             </span>
             {!isRead && <span className="unread-dot"></span>}

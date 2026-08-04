@@ -20,7 +20,10 @@ describe('RootLayout', () => {
     expect(Layout.type).toBe('html');
     expect(Layout.props.className).toContain('mock-inter');
     expect(Layout.props.className).toContain('mock-mono');
-    expect(Layout.props.children.type).toBe('body');
-    expect(Layout.props.children.props.children.props['data-testid']).toBe('child');
+    const head = Layout.props.children[0];
+    const body = Layout.props.children[1];
+    expect(head.type).toBe('head');
+    expect(body.type).toBe('body');
+    expect(body.props.children.props['data-testid']).toBe('child');
   });
 });

@@ -38,7 +38,7 @@ export default function LoginForm() {
 
   return (
     <div className="w-full max-w-[400px] flex flex-col gap-6">
-      <div className="font-mono text-sm font-medium text-white tracking-[1.92px] uppercase text-center">
+      <div className="font-mono text-sm font-medium text-neutral-950 dark:text-white tracking-[1.92px] uppercase text-center">
         Terminal<span className="text-primary">.</span>admin
       </div>
       <div className="bg-surface border border-border rounded-[var(--radius)] p-4 px-5 font-mono text-[12px] leading-[20px]">
@@ -100,7 +100,7 @@ export default function LoginForm() {
       <Button
         variant="ghost"
         href="/"
-        className="font-mono text-[11px] text-muted-foreground no-underline text-center transition-colors duration-150 hover:text-white"
+        className="font-mono text-[11px] text-muted-foreground no-underline text-center transition-colors duration-150 hover:text-neutral-950 dark:hover:text-white"
       >
         ← Back to site
       </Button>

@@ -12,7 +12,7 @@ export default function Footer({ socialLinks }: { socialLinks: any[] }) {
                 href={link.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-mono text-[11px] text-muted-foreground no-underline uppercase tracking-[1px] transition-colors duration-200 hover:text-white"
+                className="font-mono text-[11px] text-muted-foreground no-underline uppercase tracking-[1px] transition-colors duration-200 hover:text-neutral-950 dark:hover:text-white"
               >
                 {link.platform}
               </a>

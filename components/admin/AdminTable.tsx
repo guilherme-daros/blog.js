@@ -23,7 +23,7 @@ export default function AdminTable({
 
   return (
     <div className="border border-border rounded-[var(--radius)] overflow-x-auto">
-      <table className="w-full border-collapse text-[13px] [&_thead]:bg-panel [&_th]:font-mono [&_th]:text-xs [&_th]:tracking-[1.2px] [&_th]:uppercase [&_th]:text-muted-foreground [&_th]:p-[10px_14px] [&_th]:text-left [&_th]:font-normal [&_td]:p-[10px_14px] [&_td]:border-t [&_td]:border-border [&_td]:text-foreground [&_td]:text-[13px] [&_td.mono]:font-mono [&_td.mono]:text-xs [&_td.mono]:text-muted-foreground [&_td.mono]:whitespace-nowrap [&_a]:text-white [&_a]:no-underline [&_a]:transition-colors [&_a:hover]:text-primary">
+      <table className="w-full border-collapse text-[13px] [&_thead]:bg-panel [&_th]:font-mono [&_th]:text-xs [&_th]:tracking-[1.2px] [&_th]:uppercase [&_th]:text-muted-foreground [&_th]:p-[10px_14px] [&_th]:text-left [&_th]:font-normal [&_td]:p-[10px_14px] [&_td]:border-t [&_td]:border-border [&_td]:text-foreground [&_td]:text-[13px] [&_td.mono]:font-mono [&_td.mono]:text-xs [&_td.mono]:text-muted-foreground [&_td.mono]:whitespace-nowrap [&_a]:text-neutral-950 dark:[&_a]:text-white [&_a]:no-underline [&_a]:transition-colors [&_a:hover]:text-primary">
         <thead>
           <tr>
             {headers.map((header, i) => (

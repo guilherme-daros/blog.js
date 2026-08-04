@@ -14,7 +14,7 @@ export default function Newsletter() {
     <section className="max-w-[80rem] mx-auto px-6 pb-20" id="newsletter">
       <div className="bg-surface border border-border rounded-[var(--radius)] p-16 flex items-center justify-between gap-12 max-[820px]:flex-col max-[820px]:text-center max-[820px]:p-12 max-[820px]:gap-8">
         <div>
-          <h2 className="text-2xl font-normal text-white mb-2">Stay in the terminal</h2>
+          <h2 className="text-2xl font-normal text-neutral-950 dark:text-white mb-2">Stay in the terminal</h2>
           <p className="text-muted-foreground text-sm">
             Weekly market intelligence, delivered to your inbox. No fluff, just
             data and analysis.

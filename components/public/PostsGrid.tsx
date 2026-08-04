@@ -49,19 +49,19 @@ export default function PostsGrid({ posts }: { posts: Post[] }) {
   return (
     <section className="posts-section py-12 max-w-[80rem] mx-auto px-6" id="posts">
       <div className="flex justify-between items-baseline mb-4">
-        <h2 className="text-xl font-normal text-white">Latest Posts</h2>
+        <h2 className="text-xl font-normal text-neutral-950 dark:text-white">Latest Posts</h2>
         <div>
           {posts.length > 3 && (
             <div className="flex gap-2">
               <button
-                className="font-mono text-xs text-muted-foreground bg-surface border border-border hover:border-zinc-700 hover:text-white rounded-[var(--radius)] w-8 h-8 flex items-center justify-center cursor-pointer transition-colors duration-150"
+                className="font-mono text-xs text-muted-foreground bg-surface border border-border hover:border-zinc-400 dark:hover:border-zinc-700 hover:text-neutral-950 dark:hover:text-white rounded-[var(--radius)] w-8 h-8 flex items-center justify-center cursor-pointer transition-colors duration-150"
                 onClick={(e) => handleScroll(e, -1)}
                 aria-label="Previous"
               >
                 &larr;
               </button>
               <button
-                className="font-mono text-xs text-muted-foreground bg-surface border border-border hover:border-zinc-700 hover:text-white rounded-[var(--radius)] w-8 h-8 flex items-center justify-center cursor-pointer transition-colors duration-150"
+                className="font-mono text-xs text-muted-foreground bg-surface border border-border hover:border-zinc-400 dark:hover:border-zinc-700 hover:text-neutral-950 dark:hover:text-white rounded-[var(--radius)] w-8 h-8 flex items-center justify-center cursor-pointer transition-colors duration-150"
                 onClick={(e) => handleScroll(e, 1)}
                 aria-label="Next"
               >

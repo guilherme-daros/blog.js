@@ -6,7 +6,7 @@ export default function Hero() {
       <div className="inline-block font-mono text-xs tracking-[1.92px] uppercase text-primary border border-primary rounded-[var(--radius)] py-[6px] px-4 mb-8">
         // Market Intelligence
       </div>
-      <h1 className="text-[60px] font-normal leading-[60px] tracking-[-2.88px] text-white mb-6 max-[820px]:text-[40px] max-[820px]:leading-[44px] max-[820px]:tracking-[-1.5px]">
+      <h1 className="text-[60px] font-normal leading-[60px] tracking-[-2.88px] text-neutral-950 dark:text-white mb-6 max-[820px]:text-[40px] max-[820px]:leading-[44px] max-[820px]:tracking-[-1.5px]">
         Insights for the modern investor
       </h1>
       <p className="text-lg leading-[28px] text-muted-foreground max-w-[600px] mx-auto mb-10 max-[820px]:text-base max-[820px]:leading-6">

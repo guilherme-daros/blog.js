@@ -2,6 +2,8 @@ import prisma from "@/lib/prisma";
 import { Metadata } from "next";
 import PostForm from "@/components/admin/PostForm";
 
+import AdminPageLayout from "@/components/admin/AdminPageLayout";
+
 export const metadata: Metadata = {
   title: "New Post — Terminal Admin",
 };
@@ -14,11 +16,8 @@ export default async function NewPostPage() {
   const tags = tagsResult.map((t) => t.tag);
 
   return (
-    <>
-      <div style={{ marginBottom: "1rem" }}>
-        <h2>New Post</h2>
-      </div>
+    <AdminPageLayout title="New Post" count={0} itemName="" action={null}>
       <PostForm tags={tags} />
-    </>
+    </AdminPageLayout>
   );
 }

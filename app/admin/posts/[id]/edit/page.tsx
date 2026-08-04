@@ -3,6 +3,8 @@ import { Metadata } from "next";
 import PostForm from "@/components/admin/PostForm";
 import { notFound } from "next/navigation";
 
+import AdminPageLayout from "@/components/admin/AdminPageLayout";
+
 export const metadata: Metadata = {
   title: "Edit Post — Terminal Admin",
 };
@@ -29,11 +31,8 @@ export default async function EditPostPage({
   const tags = tagsResult.map((t) => t.tag);
 
   return (
-    <>
-      <div style={{ marginBottom: "1rem" }}>
-        <h2>Edit Post</h2>
-      </div>
+    <AdminPageLayout title="Edit Post" count={0} itemName="" action={null}>
       <PostForm post={post} tags={tags} />
-    </>
+    </AdminPageLayout>
   );
 }

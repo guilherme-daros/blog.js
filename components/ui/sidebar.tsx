@@ -280,7 +280,7 @@ const SidebarTrigger = React.forwardRef<
       ref={ref}
       data-sidebar="trigger"
       className={cn(
-        "font-mono text-xs text-muted-foreground bg-transparent border border-border rounded-[var(--radius)] px-3 py-1 cursor-pointer transition-colors duration-150 hover:text-white hover:border-[#444] lg:hidden",
+        "font-mono text-xs text-muted-foreground bg-transparent border border-border rounded-[var(--radius)] px-3 py-1 cursor-pointer transition-colors duration-150 hover:text-neutral-950 dark:hover:text-white hover:border-zinc-400 dark:hover:border-zinc-700 lg:hidden",
         className
       )}
       onClick={(event) => {

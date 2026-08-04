@@ -16,7 +16,7 @@ export default function PostCard({ post }: { post: Post }) {
           </Link>
           <span>{new Date(post.published_at).toLocaleDateString()}</span>
         </div>
-        <h3 className="text-lg font-medium text-white mb-2 leading-snug">
+        <h3 className="text-lg font-medium text-neutral-950 dark:text-white mb-2 leading-snug">
           <Link href={`/post/${post.slug}`} className="hover:text-primary transition-colors no-underline">
             {post.title}
           </Link>
