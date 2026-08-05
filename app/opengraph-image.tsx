@@ -24,13 +24,13 @@ export default async function Image() {
         style={{
           width: "100%",
           height: "100%",
-          backgroundColor: "#050505",
+          backgroundColor: "#1e2127",
           fontFamily: "JetBrains Mono",
           display: "flex",
           flexDirection: "column",
           padding: "50px",
-          color: "#c2c2c2",
-          border: "12px solid #1f1f1f",
+          color: "#d8dee9",
+          border: "12px solid #191c22",
           position: "relative",
         }}
       >
@@ -41,25 +41,25 @@ export default async function Image() {
             alignItems: "center",
             width: "100%",
             height: "40px",
-            borderBottom: "1px solid #1f1f1f",
+            borderBottom: "1px solid rgba(255, 255, 255, 0.05)",
             marginBottom: "50px",
           }}
         >
           {/* Dots */}
           <div style={{ display: "flex", gap: "8px", marginRight: "20px" }}>
-            <div style={{ width: "12px", height: "12px", borderRadius: "50%", backgroundColor: "#ef4444" }} />
-            <div style={{ width: "12px", height: "12px", borderRadius: "50%", backgroundColor: "#eab308" }} />
-            <div style={{ width: "12px", height: "12px", borderRadius: "50%", backgroundColor: "#22c55e" }} />
+            <div style={{ width: "12px", height: "12px", borderRadius: "50%", backgroundColor: "#bf616a" }} />
+            <div style={{ width: "12px", height: "12px", borderRadius: "50%", backgroundColor: "#ebcb8b" }} />
+            <div style={{ width: "12px", height: "12px", borderRadius: "50%", backgroundColor: "#a3be8c" }} />
           </div>
           {/* Path */}
-          <div style={{ fontSize: "16px", color: "#666666" }}>
+          <div style={{ fontSize: "16px", color: "#7b88a1" }}>
             guest@terminal-blog:~
           </div>
         </div>
 
         {/* Command Prompts */}
         <div style={{ display: "flex", flexDirection: "column", flex: 1, justifyContent: "center" }}>
-          <div style={{ display: "flex", alignItems: "center", fontSize: "28px", color: "#666666", marginBottom: "20px" }}>
+          <div style={{ display: "flex", alignItems: "center", fontSize: "28px", color: "#7b88a1", marginBottom: "20px" }}>
             <span style={{ color: "#ff6b00", marginRight: "12px" }}>$</span>
             <span>npm run dev</span>
           </div>
@@ -87,7 +87,7 @@ export default async function Image() {
             />
           </div>
 
-          <div style={{ fontSize: "24px", color: "#666666" }}>
+          <div style={{ fontSize: "24px", color: "#7b88a1" }}>
             A minimalist terminal-themed space for code, systems, and design.
           </div>
         </div>
@@ -99,8 +99,8 @@ export default async function Image() {
             justifyContent: "space-between",
             width: "100%",
             fontSize: "16px",
-            color: "#666666",
-            borderTop: "1px solid #1f1f1f",
+            color: "#7b88a1",
+            borderTop: "1px solid rgba(255, 255, 255, 0.05)",
             paddingTop: "24px",
           }}
         >

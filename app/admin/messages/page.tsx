@@ -30,13 +30,17 @@ export default async function AdminMessages({
         <>
           <Link
             href={`/admin/messages${!isUnreadFirst ? "?unread_first=1" : ""}`}
-            className={`btn btn-outline ${isUnreadFirst ? "btn-active" : ""}`}
+            className={`font-mono text-xs uppercase tracking-widest px-3 py-1.5 border rounded-[var(--radius)] transition-colors duration-150 no-underline inline-flex items-center justify-center ${
+              isUnreadFirst
+                ? "border-primary text-primary bg-panel"
+                : "border-border text-foreground hover:border-primary hover:text-primary hover:bg-panel"
+            }`}
           >
             {isUnreadFirst ? "All" : "New"}
           </Link>
           <Link
             href={`/admin/messages${isUnreadFirst ? "?unread_first=1" : ""}`}
-            className="btn btn-outline"
+            className="font-mono text-xs uppercase tracking-widest px-3 py-1.5 border border-border text-foreground rounded-[var(--radius)] transition-colors duration-150 hover:border-primary hover:text-primary hover:bg-panel no-underline inline-flex items-center justify-center"
           >
             Refresh
           </Link>

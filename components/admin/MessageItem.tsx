@@ -50,7 +50,7 @@ export default function MessageItem({ msg }: { msg: any }) {
         <td>
           <button
             onClick={handleDelete}
-            className="admin-action-btn danger"
+            className="font-mono text-[11px] bg-transparent text-destructive border border-destructive rounded-[var(--radius)] px-[10px] py-1 cursor-pointer transition-colors duration-150 hover:bg-destructive/10"
           >
             DEL
           </button>
@@ -58,18 +58,17 @@ export default function MessageItem({ msg }: { msg: any }) {
       </tr>
       {isOpen && (
         <tr>
-          <td colSpan={4} style={{ padding: 0 }}>
-            <div style={{ padding: "16px", background: "var(--ide-surface)", borderTop: "1px solid var(--ide-border)" }}>
-              <div style={{ fontFamily: "var(--font-mono)", fontSize: "12px", color: "var(--muted-foreground)", marginBottom: "0.75rem" }}>
+          <td colSpan={4} className="p-0">
+            <div className="p-4 bg-[var(--ide-surface)] border-t border-border">
+              <div className="font-mono text-xs text-muted-foreground mb-3">
                 {msg.name} &lt;{msg.email}&gt;
               </div>
-              <p style={{ fontSize: "14px", lineHeight: "1.6", margin: 0 }}>
+              <p className="text-sm leading-relaxed m-0 text-foreground">
                 {msg.body}
               </p>
               <a
                 href={`mailto:${msg.email}`}
-                className="admin-action-btn"
-                style={{ marginTop: "1rem", display: "inline-block", textDecoration: "none" }}
+                className="font-mono text-[11px] text-muted-foreground bg-transparent border border-border rounded-[var(--radius)] px-[10px] py-1 cursor-pointer no-underline transition-colors duration-150 hover:text-[var(--heading-color)] hover:border-[#444] mt-4 inline-block"
               >
                 Reply via email →
               </a>

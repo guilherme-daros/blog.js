@@ -20,7 +20,7 @@ export default async function AdminPosts() {
       count={posts.length}
       itemName="post"
       action={
-        <Link href="/admin/posts/new" className="btn btn-primary">
+        <Link href="/admin/posts/new" className="font-mono text-xs uppercase tracking-widest px-3.5 py-1.5 bg-primary text-white border border-primary rounded-[var(--radius)] transition-colors duration-150 hover:bg-[#e05e00] hover:border-[#e05e00] no-underline inline-flex items-center justify-center">
           + New Post
         </Link>
       }
@@ -51,7 +51,7 @@ export default async function AdminPosts() {
             <td className="mono">{post.reads}</td>
             <td>
               {post.is_featured ? (
-                <span className="admin-tag" style={{ borderColor: "var(--chart-green)", color: "var(--chart-green)" }}>
+                <span className="font-mono text-[10px] uppercase tracking-[1.92px] text-chart-green border border-chart-green/30 px-2 py-1 rounded-[var(--radius)] inline-flex items-center justify-center whitespace-nowrap">
                   Yes
                 </span>
               ) : (
@@ -59,22 +59,22 @@ export default async function AdminPosts() {
                   "use server";
                   await featurePost(post.id);
                 }}>
-                  <button type="submit" className="btn btn-outline" style={{ padding: "4px 8px" }}>
+                  <button type="submit" className="font-mono text-[11px] bg-transparent text-muted-foreground border border-border rounded-[var(--radius)] px-2 py-1 cursor-pointer transition-colors duration-150 hover:text-[var(--heading-color)] hover:border-[#444]">
                     Feature
                   </button>
                 </form>
               )}
             </td>
             <td>
-              <div style={{ display: "flex", gap: "0.5rem" }}>
-                <Link href={`/admin/posts/${post.id}/edit`} className="btn btn-outline" style={{ padding: "4px 8px" }}>
+              <div className="flex gap-2">
+                <Link href={`/admin/posts/${post.id}/edit`} className="font-mono text-[11px] bg-transparent text-muted-foreground border border-border rounded-[var(--radius)] px-2 py-1 no-underline transition-colors duration-150 hover:text-[var(--heading-color)] hover:border-[#444]">
                   Edit
                 </Link>
                 <form action={async () => {
                   "use server";
                   await deletePost(post.id);
                 }}>
-                  <button type="submit" className="btn btn-outline" style={{ padding: "4px 8px", borderColor: "var(--error)", color: "var(--error)" }}>
+                  <button type="submit" className="font-mono text-[11px] bg-transparent text-destructive border border-destructive rounded-[var(--radius)] px-2 py-1 cursor-pointer transition-colors duration-150 hover:bg-destructive/10">
                     Del
                   </button>
                 </form>

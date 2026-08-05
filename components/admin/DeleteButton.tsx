@@ -26,7 +26,7 @@ export default function DeleteButton({
 
   return (
     <button
-      className="admin-action-btn danger"
+      className="font-mono text-[11px] bg-transparent text-destructive border border-destructive rounded-[var(--radius)] px-[10px] py-1 cursor-pointer transition-colors duration-150 hover:bg-destructive/10 disabled:text-muted-foreground disabled:border-border disabled:bg-transparent disabled:cursor-not-allowed"
       onClick={handleDelete}
       disabled={disabled || isPending}
     >

@@ -56,20 +56,23 @@ export default function SubscribersClient({
   const actionButtons = isManaging ? (
     <>
       <button
-        className="btn btn-outline"
-        style={{ borderColor: "var(--error)", color: "var(--error)" }}
+        className="font-mono text-xs uppercase tracking-widest px-3 py-1.5 border border-destructive text-destructive bg-transparent rounded-[var(--radius)] transition-colors duration-150 hover:bg-destructive/10 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
         onClick={handleDeleteSelected}
         disabled={selectedIds.size === 0 || isPending}
       >
         {isPending ? "Deleting..." : `Delete Selected (${selectedIds.size})`}
       </button>
-      <button className="btn btn-outline" onClick={() => { setIsManaging(false); setSelectedIds(new Set()); }} disabled={isPending}>
+      <button
+        className="font-mono text-xs uppercase tracking-widest px-3 py-1.5 border border-border text-foreground bg-transparent rounded-[var(--radius)] transition-colors duration-150 hover:border-primary hover:text-primary hover:bg-panel cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+        onClick={() => { setIsManaging(false); setSelectedIds(new Set()); }}
+        disabled={isPending}
+      >
         Done
       </button>
     </>
   ) : (
     <button
-      className="btn btn-outline"
+      className="font-mono text-xs uppercase tracking-widest px-3 py-1.5 border border-border text-foreground bg-transparent rounded-[var(--radius)] transition-colors duration-150 hover:border-primary hover:text-primary hover:bg-panel cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
       onClick={() => setIsManaging(true)}
       disabled={subscribers.length === 0 || !isAdmin}
     >

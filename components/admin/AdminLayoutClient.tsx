@@ -90,8 +90,7 @@ function AdminLayoutInner({
                         "font-mono text-xs uppercase tracking-[1.92px] px-6 py-[10px] h-auto rounded-none transition-all duration-150 text-muted-foreground hover:text-neutral-950 dark:hover:text-white hover:bg-panel data-[active=true]:bg-transparent data-[active=true]:text-primary data-[active=true]:border-r-2 data-[active=true]:border-primary"
                       )}
                     >
-                      <Link href="/admin" className="flex items-center gap-3">
-                        <LayoutDashboard className="size-4 shrink-0" />
+                      <Link href="/admin" className="flex items-center">
                         <span>Dashboard</span>
                       </Link>
                     </SidebarMenuButton>
@@ -105,8 +104,7 @@ function AdminLayoutInner({
                         "font-mono text-xs uppercase tracking-[1.92px] px-6 py-[10px] h-auto rounded-none transition-all duration-150 text-muted-foreground hover:text-neutral-950 dark:hover:text-white hover:bg-panel data-[active=true]:bg-transparent data-[active=true]:text-primary data-[active=true]:border-r-2 data-[active=true]:border-primary"
                       )}
                     >
-                      <Link href="/admin/posts" className="flex items-center gap-3">
-                        <FileText className="size-4 shrink-0" />
+                      <Link href="/admin/posts" className="flex items-center">
                         <span>Posts</span>
                       </Link>
                     </SidebarMenuButton>
@@ -120,8 +118,7 @@ function AdminLayoutInner({
                         "font-mono text-xs uppercase tracking-[1.92px] px-6 py-[10px] h-auto rounded-none transition-all duration-150 text-muted-foreground hover:text-neutral-950 dark:hover:text-white hover:bg-panel data-[active=true]:bg-transparent data-[active=true]:text-primary data-[active=true]:border-r-2 data-[active=true]:border-primary"
                       )}
                     >
-                      <Link href="/admin/messages" className="flex items-center gap-3">
-                        <Mail className="size-4 shrink-0" />
+                      <Link href="/admin/messages" className="flex items-center">
                         <span>Messages</span>
                       </Link>
                     </SidebarMenuButton>
@@ -135,8 +132,7 @@ function AdminLayoutInner({
                         "font-mono text-xs uppercase tracking-[1.92px] px-6 py-[10px] h-auto rounded-none transition-all duration-150 text-muted-foreground hover:text-neutral-950 dark:hover:text-white hover:bg-panel data-[active=true]:bg-transparent data-[active=true]:text-primary data-[active=true]:border-r-2 data-[active=true]:border-primary"
                       )}
                     >
-                      <Link href="/admin/subscribers" className="flex items-center gap-3">
-                        <Users className="size-4 shrink-0" />
+                      <Link href="/admin/subscribers" className="flex items-center">
                         <span>Subscribers</span>
                       </Link>
                     </SidebarMenuButton>
@@ -150,8 +146,7 @@ function AdminLayoutInner({
                         "font-mono text-xs uppercase tracking-[1.92px] px-6 py-[10px] h-auto rounded-none transition-all duration-150 text-muted-foreground hover:text-neutral-950 dark:hover:text-white hover:bg-panel data-[active=true]:bg-transparent data-[active=true]:text-primary data-[active=true]:border-r-2 data-[active=true]:border-primary"
                       )}
                     >
-                      <Link href="/admin/social" className="flex items-center gap-3">
-                        <Share2 className="size-4 shrink-0" />
+                      <Link href="/admin/social" className="flex items-center">
                         <span>Social Links</span>
                       </Link>
                     </SidebarMenuButton>
@@ -166,8 +161,7 @@ function AdminLayoutInner({
                           "font-mono text-xs uppercase tracking-[1.92px] px-6 py-[10px] h-auto rounded-none transition-all duration-150 text-muted-foreground hover:text-neutral-950 dark:hover:text-white hover:bg-panel data-[active=true]:bg-transparent data-[active=true]:text-primary data-[active=true]:border-r-2 data-[active=true]:border-primary"
                         )}
                       >
-                        <Link href="/admin/users" className="flex items-center gap-3">
-                          <UserCog className="size-4 shrink-0" />
+                        <Link href="/admin/users" className="flex items-center">
                           <span>Users</span>
                         </Link>
                       </SidebarMenuButton>
