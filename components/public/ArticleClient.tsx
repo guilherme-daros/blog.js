@@ -35,7 +35,7 @@ export function CopyLinkButton() {
   };
 
   return (
-    <button className="share-btn" onClick={handleCopy}>
+    <button className="font-mono text-[11px] text-muted-foreground bg-transparent border border-border rounded-[var(--radius)] px-3 py-1 cursor-pointer no-underline transition-colors duration-200 hover:border-primary hover:text-primary hover:bg-panel" onClick={handleCopy}>
       {copied ? "Copied!" : "Copy link"}
     </button>
   );
@@ -67,8 +67,8 @@ export function ArticleBody({ content }: { content: string }) {
   return (
     <>
       {toc.length > 1 && (
-        <nav className="toc" id="toc" style={{ display: "block" }}>
-          <div className="toc-title">Table of contents</div>
+        <nav className="hidden border border-border rounded-[var(--radius)] px-6 py-5 mb-8" id="toc" style={{ display: "block" }}>
+          <div className="font-mono text-[10px] tracking-[1.5px] uppercase text-muted-foreground mb-3">Table of contents</div>
           <ul>
             {toc.map((item) => (
               <li

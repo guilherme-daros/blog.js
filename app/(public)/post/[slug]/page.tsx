@@ -60,12 +60,12 @@ export default async function PostPage({
     <>
       <ReadingProgress />
 
-      <article className="article">
-        <header className="article-header">
-          <Link href="/" className="article-back">
+      <article className="max-w-[960px] mx-auto px-6 pt-[80px] pb-[64px] max-[820px]:pt-[120px]">
+        <header className="mb-12 border-b border-border pb-8">
+          <Link href="/" className="font-mono text-[11px] tracking-[1.5px] uppercase text-muted-foreground no-underline transition-colors duration-200 inline-block mb-4 hover:text-primary">
             ← Back to blog
           </Link>
-          <div className="post-meta flex items-center gap-3 text-xs text-muted-foreground font-mono">
+          <div className="font-mono text-[12px] tracking-[-0.24px] text-muted-foreground mb-4 flex items-center gap-3 text-xs">
             <Link href={`/archive?tag=${post.tag}`} className="no-underline">
               <Badge variant="primary">{post.tag}</Badge>
             </Link>
@@ -76,16 +76,16 @@ export default async function PostPage({
             <span>{post.reads} views</span>
           </div>
           <h1>{post.title}</h1>
-          <p className="article-excerpt">{post.excerpt}</p>
-          <div className="share-bar">
-            <span className="share-label">Share</span>
+          <p className="text-[18px] leading-[28px] text-muted-foreground">{post.excerpt}</p>
+          <div className="flex items-center gap-3 mt-6 max-[640px]:flex-wrap">
+            <span className="font-mono text-[10px] tracking-[1.5px] uppercase text-muted-foreground">Share</span>
             <a
               href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(
                 post.title
               )}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="share-btn"
+              className="font-mono text-[11px] text-muted-foreground bg-transparent border border-border rounded-[var(--radius)] px-3 py-1 cursor-pointer no-underline transition-colors duration-200 hover:border-primary hover:text-primary hover:bg-panel"
             >
               Twitter
             </a>
@@ -93,7 +93,7 @@ export default async function PostPage({
               href={`https://www.linkedin.com/sharing/share-offsite/`}
               target="_blank"
               rel="noopener noreferrer"
-              className="share-btn"
+              className="font-mono text-[11px] text-muted-foreground bg-transparent border border-border rounded-[var(--radius)] px-3 py-1 cursor-pointer no-underline transition-colors duration-200 hover:border-primary hover:text-primary hover:bg-panel"
             >
               LinkedIn
             </a>
@@ -104,19 +104,19 @@ export default async function PostPage({
         <ArticleBody content={post.content} />
 
         {(prevPost || nextPost) && (
-          <nav className="post-nav">
+          <nav className="grid grid-cols-2 gap-[1px] bg-border border border-border rounded-[var(--radius)] mt-12 max-[640px]:grid-cols-1">
             {prevPost ? (
-              <Link href={`/post/${prevPost.slug}`} className="post-nav-link prev">
-                <span className="post-nav-dir">← Previous</span>
-                <span className="post-nav-title">{prevPost.title}</span>
+              <Link href={`/post/${prevPost.slug}`} className="bg-surface px-6 py-5 no-underline transition-colors duration-150 hover:bg-panel prev">
+                <span className="block font-mono text-[10px] tracking-[1.5px] uppercase text-primary mb-1">← Previous</span>
+                <span className="block text-[14px] text-[var(--heading-color)] leading-[20px]">{prevPost.title}</span>
               </Link>
             ) : (
               <div />
             )}
             {nextPost ? (
-              <Link href={`/post/${nextPost.slug}`} className="post-nav-link next">
-                <span className="post-nav-dir">Next →</span>
-                <span className="post-nav-title">{nextPost.title}</span>
+              <Link href={`/post/${nextPost.slug}`} className="bg-surface px-6 py-5 no-underline transition-colors duration-150 hover:bg-panel text-right">
+                <span className="block font-mono text-[10px] tracking-[1.5px] uppercase text-primary mb-1">Next →</span>
+                <span className="block text-[14px] text-[var(--heading-color)] leading-[20px]">{nextPost.title}</span>
               </Link>
             ) : (
               <div />
@@ -126,11 +126,11 @@ export default async function PostPage({
       </article>
 
       {related.length > 0 && (
-        <section className="related-section">
-          <div className="section-header">
+        <section className="max-w-[960px] mx-auto px-6 pb-20">
+          <div className="flex items-baseline justify-between mb-8 border-b border-border pb-4">
             <h2>More in {post.tag}</h2>
           </div>
-          <div className="posts-grid related-grid">
+          <div className="posts-grid grid grid-cols-[repeat(auto-fit,minmax(200px,1fr))] gap-6 max-[640px]:grid-cols-1">
             {related.map((relatedPost) => (
               <PostCard key={relatedPost.id} post={relatedPost} />
             ))}

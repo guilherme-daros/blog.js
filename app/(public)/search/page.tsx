@@ -40,9 +40,9 @@ export default async function SearchPage({
   }
 
   return (
-    <section className="search-page">
-      <header className="search-header">
-        <form className="search-form-large" action="/search" method="GET">
+    <section className="max-w-[80rem] mx-auto px-6 pt-[100px] pb-20 max-[820px]:pt-[120px]">
+      <header className="mb-8">
+        <form className="flex gap-0 mb-4 max-[640px]:flex-col" action="/search" method="GET">
           <input
             type="text"
             name="q"
@@ -50,12 +50,12 @@ export default async function SearchPage({
             placeholder="Search posts..."
             autoFocus
           />
-          <button type="submit" className="btn btn-primary">
+          <button type="submit" className="font-mono text-[12px] font-normal leading-[18px] tracking-[1.92px] uppercase no-underline inline-flex items-center justify-center px-7 py-3 rounded-[var(--radius)] cursor-pointer transition-all duration-200 bg-primary text-white border border-primary hover:bg-[#e05e00] hover:border-[#e05e00]">
             Search
           </button>
         </form>
         {query && (
-          <p className="search-count">
+          <p className="font-mono text-[12px] text-muted-foreground">
             {results.length} result{results.length !== 1 ? "s" : ""} for "
             {query}"
           </p>
@@ -63,38 +63,38 @@ export default async function SearchPage({
       </header>
 
       {results.length > 0 ? (
-        <div className="archive-list">
+        <div className="flex flex-col">
           {results.map((post) => {
             const date = new Date(post.published_at);
             return (
               <Link
                 key={post.id}
                 href={`/post/${post.slug}`}
-                className="archive-item"
+                className="group flex items-center gap-8 py-6 border-b border-border no-underline transition-colors duration-150 first:border-t-0 hover:bg-surface hover:-mx-4 hover:px-4 hover:rounded-[var(--radius)] max-[640px]:gap-4"
               >
-                <div className="archive-item-date">
-                  <span className="archive-month">
+                <div className="shrink-0 w-12 text-center">
+                  <span className="block font-mono text-[10px] tracking-[1.2px] uppercase text-primary">
                     {date.toLocaleString("default", { month: "short" })}
                   </span>
-                  <span className="archive-day">
+                  <span className="block font-mono text-[22px] font-medium text-[var(--heading-color)] leading-[1.2]">
                     {date.toLocaleString("default", { day: "2-digit" })}
                   </span>
                 </div>
-                <div className="archive-item-body">
-                  <div className="archive-item-meta">
-                    <span className="archive-category">
+                <div className="flex-1 min-w-0 [&>p]:whitespace-nowrap [&>p]:overflow-hidden [&>p]:text-ellipsis max-[640px]:[&>p]:whitespace-normal">
+                  <div className="font-mono text-[12px] tracking-[-0.24px] flex items-center gap-2 mb-1">
+                    <span className="text-foreground uppercase text-[10px] tracking-[1.2px] [&>.bracket]:text-primary">
                       <span className="bracket">[</span> {post.tag}{" "}
                       <span className="bracket">]</span>
                     </span>
-                    <span className="archive-separator">—</span>
-                    <span className="archive-readtime">
+                    <span className="text-muted-foreground">—</span>
+                    <span className="text-muted-foreground">
                       {post.read_time} min read
                     </span>
                   </div>
                   <h3>{post.title}</h3>
                   <p>{post.excerpt}</p>
                 </div>
-                <div className="archive-item-arrow">→</div>
+                <div className="shrink-0 font-mono text-[16px] text-muted-foreground transition-all duration-200 group-hover:text-primary group-hover:translate-x-1">→</div>
               </Link>
             );
           })}

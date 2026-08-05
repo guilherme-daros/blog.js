@@ -2,8 +2,11 @@
 
 import { messageService } from "@/lib/services/messageService";
 import { subscriberService } from "@/lib/services/subscriberService";
+import { isRateLimited, getClientIp } from "@/lib/rateLimit";
 import { z } from "zod";
-import { ActionState } from "./admin";
+import { ActionState } from "@/types";
+
+// ─── Schemas ──────────────────────────────────────────────────────────────────
 
 const ContactSchema = z.object({
   name: z.string().min(1),
@@ -12,8 +15,23 @@ const ContactSchema = z.object({
   message: z.string().min(1),
 });
 
-export async function submitContactForm(prevState: ActionState | null, formData: FormData): Promise<ActionState> {
+const NewsletterSchema = z.object({
+  email: z.string().email(),
+});
+
+// ─── Actions ──────────────────────────────────────────────────────────────────
+
+export async function submitContactForm(
+  prevState: ActionState | null,
+  formData: FormData
+): Promise<ActionState> {
   try {
+    const ip = await getClientIp();
+    // 5 submissions per 10 minutes per IP
+    if (isRateLimited(`contact:${ip}`, { limit: 5, windowMs: 10 * 60 * 1000 })) {
+      return { error: "Too many requests. Please wait a few minutes and try again." };
+    }
+
     const data = ContactSchema.parse({
       name: formData.get("name"),
       email: formData.get("email"),
@@ -35,12 +53,17 @@ export async function submitContactForm(prevState: ActionState | null, formData:
   }
 }
 
-const NewsletterSchema = z.object({
-  email: z.string().email(),
-});
-
-export async function subscribeNewsletter(prevState: ActionState | null, formData: FormData): Promise<ActionState> {
+export async function subscribeNewsletter(
+  prevState: ActionState | null,
+  formData: FormData
+): Promise<ActionState> {
   try {
+    const ip = await getClientIp();
+    // 3 subscriptions per 10 minutes per IP
+    if (isRateLimited(`newsletter:${ip}`, { limit: 3, windowMs: 10 * 60 * 1000 })) {
+      return { error: "Too many requests. Please wait a few minutes and try again." };
+    }
+
     const data = NewsletterSchema.parse({
       email: formData.get("email"),
     });
@@ -49,8 +72,7 @@ export async function subscribeNewsletter(prevState: ActionState | null, formDat
 
     return { success: true };
   } catch (error: any) {
-    // Check for unique constraint violation (already subscribed)
-    if (error.code === 'P2002') {
+    if (error.code === "P2002") {
       return { error: "You are already subscribed to our newsletter!" };
     }
     console.error("Newsletter error:", error);
